@@ -49,10 +49,11 @@ namespace OOPTextBasedRPG
         }
 
         #region Constructor
-        public Entity(int health)
+        public Entity(int health, Point2D position)
         {
             Debug.WriteLine("Entity Class Constructed");
             healthSystem = new HealthSystem(health);
+            this.position = new Point2D(position.x, position.y);
         }
         #endregion
     }

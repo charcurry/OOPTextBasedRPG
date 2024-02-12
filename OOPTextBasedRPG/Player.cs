@@ -89,12 +89,10 @@ namespace OOPTextBasedRPG
         }
 
         #region Constructor
-        public Player(Enemy enemy, Map map, int health) : base(health)
+        public Player(Enemy enemy, Map map, int health, Point2D position) : base(health, position)
         {
             this.enemy = enemy;
             this.map = map;
-            this.position.x = 3;
-            this.position.y = 3;
             Debug.WriteLine("Player Class Constructed");
         }
         #endregion

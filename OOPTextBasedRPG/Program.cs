@@ -10,9 +10,9 @@ namespace OOPTextBasedRPG
     internal class Program
     {
         #region Instantiation
-        static Map map = new Map();
-        static Enemy enemy = new Enemy(map, 10);
-        static Player player = new Player(enemy, map, 10);
+        static readonly Map map = new Map();
+        static readonly Enemy enemy = new Enemy(map, 10, new Point2D(16, 10));
+        static readonly Player player = new Player(enemy, map, 10, new Point2D(3, 3));
         #endregion
 
         static void Main(string[] args)
