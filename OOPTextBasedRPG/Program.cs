@@ -13,6 +13,7 @@ namespace OOPTextBasedRPG
         static readonly Map map = new Map();
         static readonly Enemy enemy = new Enemy(map, 10, new Point2D(16, 10));
         static readonly Player player = new Player(enemy, map, 10, new Point2D(3, 3));
+        static readonly Item item = new Item();
         #endregion
 
         static void Main(string[] args)

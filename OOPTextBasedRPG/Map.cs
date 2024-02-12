@@ -28,12 +28,52 @@ namespace OOPTextBasedRPG
         public int mapYLength = mapRows.Length;
         #endregion
 
-        #region Entities
-        private List<Entity> entities = new List<Entity>();
+        #region Items
+        private readonly List<Item> items = new List<Item>();
 
-        public Map(List<Entity> initialEntities)
+        public void AddItem(Item item, Point2D position)
+        {
+            items.Add(item);
+            item.position = position;
+        }
+
+        public void RemoveItem(Point2D position)
+        {
+            foreach (var item in GetItems())
+            {
+                if (item.position.y == position.y && item.position.x == position.x)
+                {
+                    items.Remove(item);
+                }
+            }
+        }
+
+        public Item GetItem(Point2D position)
+        {
+            foreach (var item in GetItems())
+            {
+                if (item.position.y == position.y && item.position.x == position.x)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+
+        public List<Item> GetItems()
+        {
+            return items;
+        }
+        #endregion
+
+        #region Entities
+        private readonly List<Entity> entities = new List<Entity>();
+
+        public Map(List<Entity> initialEntities, List<Item> items)
         {
             entities.AddRange(initialEntities);
+            items.AddRange(items);
         }
 
         public void AddEntity(Entity entity, Point2D position)
