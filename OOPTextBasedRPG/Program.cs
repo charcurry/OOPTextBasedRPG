@@ -28,26 +28,14 @@ namespace OOPTextBasedRPG
 
             while (!player.gameOver)
             {
-                if (!player.healthSystem.isDead)
+                player.PlayerDraw();
+                enemy.EnemyDraw(enemy.position.x, enemy.position.y);
+                player.PlayerUpdate();
+                if (!player.gaveDamage)
                 {
-                    player.PlayerDraw();
+                    enemy.EnemyUpdate();
                 }
-                if (!enemy.healthSystem.isDead)
-                {
-                    enemy.EnemyDraw(enemy.position.x, enemy.position.y);
-                }
-                if (!player.healthSystem.isDead)
-                {
-                    player.PlayerUpdate();
-                }
-                if (!enemy.healthSystem.isDead)
-                {
-                    if (!player.gaveDamage)
-                    {
-                        enemy.EnemyUpdate();
-                    }
-                    player.gaveDamage = false;
-                }
+                player.gaveDamage = false;
                 if (player.healthSystem.isDead)
                 {
                     player.gameOver = true;
