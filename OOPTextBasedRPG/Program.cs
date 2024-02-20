@@ -11,6 +11,7 @@ namespace OOPTextBasedRPG
     {
         #region Instantiation
         static readonly Map map = new Map();
+        static readonly HUD hud = new HUD();
         static readonly Enemy enemy = new Enemy(map, 10, new Point2D(16, 10));
         static readonly Player player = new Player(enemy, map, 10, new Point2D(3, 3));
         static readonly Item item = new Item();
@@ -24,7 +25,7 @@ namespace OOPTextBasedRPG
             map.GetEntities();
             Console.CursorVisible = false;
             map.RenderMap();
-            map.ShowHUD(player, enemy);
+            hud.ShowHUD(player, enemy);
 
             while (!player.gameOver)
             {
@@ -47,7 +48,7 @@ namespace OOPTextBasedRPG
                     player.playerVictory = true;
                 }
                 map.RenderMap();
-                map.ShowHUD(player, enemy);
+                hud.ShowHUD(player, enemy);
                 if (player.playerVictory)
                 {
                     RenderTextScreen("Victory");

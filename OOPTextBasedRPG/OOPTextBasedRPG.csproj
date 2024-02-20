@@ -45,8 +45,10 @@
   <ItemGroup>
     <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="GameManager.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="HealthSystem.cs" />
+    <Compile Include="HUD.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Player.cs" />
