@@ -32,8 +32,8 @@ namespace OOPTextBasedRPG
             while (!player.gameOver)
             {
                 player.PlayerDraw();
-                enemy.EnemyDraw(enemy.position.x, enemy.position.y);
-                item.ItemDraw(item.position.x, item.position.y);
+                item.ItemDraw();
+                enemy.EnemyDraw();
                 player.PlayerUpdate();
                 if (!player.gaveDamage)
                 {

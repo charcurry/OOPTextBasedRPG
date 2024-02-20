@@ -22,11 +22,11 @@ namespace OOPTextBasedRPG
         }
         #endregion
 
-        public void EnemyDraw(int x, int y)
+        public void EnemyDraw()
         {
             if (!healthSystem.isDead)
             {
-                Console.SetCursorPosition(x, y);
+                Console.SetCursorPosition(this.position.x, this.position.y);
                 Console.WriteLine("G");
             }
         }

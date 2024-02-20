@@ -33,7 +33,7 @@ namespace OOPTextBasedRPG
             {
                 Attack(map.GetEntity(endPos));
             }
-            else if (map.GetItem(endPos) != null)
+            else if (map.GetItem(endPos) != null && this == map.GetPlayer())
             {
                 map.GetItem(endPos).PickupItem();
                 map.RemoveItem(endPos);

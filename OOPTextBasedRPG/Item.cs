@@ -19,11 +19,11 @@ namespace OOPTextBasedRPG
             this.position = new Point2D(position.x, position.y);
         }
 
-        public void ItemDraw(int x, int y)
+        public void ItemDraw()
         {
             if (!isPickedUp)
             {
-                Console.SetCursorPosition(x, y);
+                Console.SetCursorPosition(this.position.x, this.position.y);
                 Console.WriteLine("T");
             }
         }
