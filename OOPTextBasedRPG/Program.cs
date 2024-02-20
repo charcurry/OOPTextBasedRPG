@@ -14,7 +14,7 @@ namespace OOPTextBasedRPG
         static readonly HUD hud = new HUD();
         static readonly Enemy enemy = new Enemy(map, 10, new Point2D(16, 10));
         static readonly Player player = new Player(enemy, map, 10, new Point2D(3, 3));
-        static readonly Item item = new Item();
+        static readonly Item item = new Item(new Point2D(8,8), map, player);
         #endregion
 
         static void Main(string[] args)
@@ -22,7 +22,9 @@ namespace OOPTextBasedRPG
 
             map.AddEntity(player, player.position);
             map.AddEntity(enemy, enemy.position);
+            map.AddItem(item, item.position);
             map.GetEntities();
+            map.GetItems();
             Console.CursorVisible = false;
             map.RenderMap();
             hud.ShowHUD(player, enemy);
@@ -31,6 +33,7 @@ namespace OOPTextBasedRPG
             {
                 player.PlayerDraw();
                 enemy.EnemyDraw(enemy.position.x, enemy.position.y);
+                item.ItemDraw(item.position.x, item.position.y);
                 player.PlayerUpdate();
                 if (!player.gaveDamage)
                 {

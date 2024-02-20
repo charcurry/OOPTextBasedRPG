@@ -8,5 +8,31 @@ namespace OOPTextBasedRPG
 {
     internal class Item : GameObject
     {
+        public bool isPickedUp = false;
+        public readonly Map map;
+        public readonly Player player;
+
+        public Item(Point2D position, Map map, Player player)
+        {
+            this.player = player;
+            this.map = map;
+            this.position = new Point2D(position.x, position.y);
+        }
+
+        public void ItemDraw(int x, int y)
+        {
+            if (!isPickedUp)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.WriteLine("T");
+            }
+        }
+
+        public void PickupItem()
+        {
+             isPickedUp = true;
+            // check for type or something
+            // add to inventory / use
+        }
     }
 }

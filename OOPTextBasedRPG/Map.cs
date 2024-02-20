@@ -39,7 +39,7 @@ namespace OOPTextBasedRPG
 
         public void RemoveItem(Point2D position)
         {
-            foreach (var item in GetItems())
+            foreach (var item in GetItems().ToList())
             {
                 if (item.position.y == position.y && item.position.x == position.x)
                 {
