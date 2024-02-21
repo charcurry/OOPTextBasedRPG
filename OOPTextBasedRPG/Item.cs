@@ -30,7 +30,8 @@ namespace OOPTextBasedRPG
 
         public void PickupItem()
         {
-             isPickedUp = true;
+            player.healthSystem.Heal(3);
+            isPickedUp = true;
             // check for type or something
             // add to inventory / use
         }
