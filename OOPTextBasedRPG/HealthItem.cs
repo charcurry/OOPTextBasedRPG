@@ -10,7 +10,13 @@ namespace OOPTextBasedRPG
     {
         public HealthItem(Point2D position, Map map, Player player) : base (position, map, player) 
         {
-            
+
+        }
+
+        public override void PickupItem()
+        {
+            player.healthSystem.Heal(3);
+            isPickedUp = true;
         }
     }
 }

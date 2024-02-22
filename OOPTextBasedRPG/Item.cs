@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOPTextBasedRPG
 {
-    internal class Item : GameObject
+    internal abstract class Item : GameObject
     {
         public bool isPickedUp = false;
         public readonly Map map;
@@ -28,12 +28,6 @@ namespace OOPTextBasedRPG
             }
         }
 
-        public void PickupItem()
-        {
-            player.healthSystem.Heal(3);
-            isPickedUp = true;
-            // check for type or something
-            // add to inventory / use
-        }
+        public abstract void PickupItem();
     }
 }
