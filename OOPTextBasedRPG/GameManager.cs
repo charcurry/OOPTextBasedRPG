@@ -49,23 +49,14 @@ namespace OOPTextBasedRPG
                 player.PlayerUpdate();
                 enemy.EnemyUpdate();
                 player.gaveDamage = false;
-                if (player.healthSystem.isDead)
-                {
-                    player.gameOver = true;
-                    player.playerDead = true;
-                }
-                else if (enemy.healthSystem.isDead)
-                {
-                    player.gameOver = true;
-                    player.playerVictory = true;
-                }
+                CheckGameOver();
                 map.RenderMap();
                 hud.ShowHUD(player, enemy);
-                if (player.playerVictory)
+                if (enemy.healthSystem.isDead)
                 {
                     RenderTextScreen("Victory");
                 }
-                if (player.playerDead)
+                if (player.healthSystem.isDead)
                 {
                     RenderTextScreen("Game Over");
                 }
@@ -78,6 +69,14 @@ namespace OOPTextBasedRPG
         {
             Console.Clear();
             Console.WriteLine(displayText);
+        }
+
+        public void CheckGameOver()
+        {
+            if (player.healthSystem.isDead || enemy.healthSystem.isDead)
+            {
+                player.gameOver = true;
+            }
         }
     }
 }
