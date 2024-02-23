@@ -13,7 +13,7 @@ namespace OOPTextBasedRPG
     internal class Map
     {
         #region Wall & Door Tile Char
-        public char wallTile = '^';
+        public char wallTile = '#';
         public char doorTile = 'E';
         public char airTile = ' ';
         #endregion

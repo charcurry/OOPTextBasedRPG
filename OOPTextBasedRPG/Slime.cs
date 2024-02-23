@@ -8,6 +8,10 @@ namespace OOPTextBasedRPG
 {
     internal class Slime : Enemy
     {
+
+        int distanceX;
+        int distanceY;
+
         public Slime(Map map, int health, int shield, int maxHealth, int maxShield, Point2D position, ConsoleColor color, string icon, int attackDamage, int moveSpeed) : base(map, health, shield, maxHealth, maxShield, position, color, icon, attackDamage, moveSpeed)
         {
 
@@ -15,10 +19,13 @@ namespace OOPTextBasedRPG
 
         public override void EnemyUpdate()
         {
-            if (!healthSystem.isDead)
+            if (!healthSystem.isDead && map.GetPlayer() != null)
             {
-                int distanceX = Math.Abs(position.x - map.GetPlayer().position.x);
-                int distanceY = Math.Abs(position.y - map.GetPlayer().position.y);
+                if (map.GetPlayer() != null)
+                {
+                    distanceX = Math.Abs(position.x - map.GetPlayer().position.x);
+                    distanceY = Math.Abs(position.y - map.GetPlayer().position.y);
+                }
 
                 if (distanceX <= 5 && distanceY <= 5) 
                 {

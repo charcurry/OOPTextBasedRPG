@@ -38,6 +38,7 @@ namespace OOPTextBasedRPG
         {
             if (!healthSystem.isDead)
             {
+                while (Console.KeyAvailable) { Console.ReadKey(true); }
                 ConsoleKeyInfo input = Console.ReadKey(true);
                 Debug.WriteLine(map.GetTile(position));
                 if (input.Key == ConsoleKey.W)

@@ -16,21 +16,27 @@ namespace OOPTextBasedRPG
         #region HUD
         static void RenderLegend()
         {
+            Console.WriteLine("@ - Player");
+            Console.WriteLine("# - Walls (Cannot move through)");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("▲ - Mountains (Cannot Climb)");
+            Console.WriteLine("Y - Lightning Spirits");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("» - Rivers");
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("W - Bats");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("  - Grass");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("H - Health Pickups");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("S - Shield Pickups");
             Console.ForegroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("♣ - Trees");
+            Console.WriteLine("O - Slimes");
             Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("F - Keys");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("⌂ - Towns");
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("E - Doors");
             Console.WriteLine();
         }
 

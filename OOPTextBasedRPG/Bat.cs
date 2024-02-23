@@ -15,7 +15,7 @@ namespace OOPTextBasedRPG
 
         public override void EnemyUpdate()
         {
-            if (!healthSystem.isDead)
+            if (!healthSystem.isDead && map.GetPlayer() != null)
             {
                 Random random = new Random();
                 int direction = random.Next(0, 4);

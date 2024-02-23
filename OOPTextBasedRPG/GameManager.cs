@@ -30,13 +30,30 @@ namespace OOPTextBasedRPG
 
         public void InitGame()
         {
-            enemies.Add(new Slime(map, 10, 10, 10, 10, new Point2D(16, 10), ConsoleColor.DarkGreen, "O", 2, 1));
-            enemies.Add(new Bat(map, 5, 3, 5, 3, new Point2D(16, 16), ConsoleColor.DarkBlue, "W", 1, 1));
-            enemies.Add(new LightningSpirit(map, 1, 5, 1, 5, new Point2D(9, 9), ConsoleColor.Yellow, "Y", 3, 2));
+            Console.WindowHeight = 63;
+            Console.WindowWidth = 240;
+            enemies.Add(new Slime(map, 10, 10, 10, 10, new Point2D(16, 9), ConsoleColor.DarkGreen, "O", 2, 1));
+            enemies.Add(new Slime(map, 5, 3, 5, 3, new Point2D(16, 15), ConsoleColor.DarkGreen, "O", 1, 1));
+            enemies.Add(new LightningSpirit(map, 1, 5, 1, 5, new Point2D(84, 12), ConsoleColor.Yellow, "Y", 3, 2));
+            enemies.Add(new LightningSpirit(map, 1, 5, 1, 5, new Point2D(11, 19), ConsoleColor.Yellow, "Y", 3, 2));
+            enemies.Add(new LightningSpirit(map, 1, 5, 1, 5, new Point2D(77, 28), ConsoleColor.Yellow, "Y", 3, 2));
+            enemies.Add(new Slime(map, 10, 10, 10, 10, new Point2D(89, 16), ConsoleColor.DarkGreen, "O", 2, 1));
+            enemies.Add(new Bat(map, 5, 3, 5, 3, new Point2D(49, 8), ConsoleColor.DarkBlue, "W", 1, 1));
+            enemies.Add(new Bat(map, 5, 3, 5, 3, new Point2D(62, 27), ConsoleColor.DarkBlue, "W", 1, 1));
+            enemies.Add(new Bat(map, 5, 3, 5, 3, new Point2D(22, 28), ConsoleColor.DarkBlue, "W", 1, 1));
+            enemies.Add(new Slime(map, 10, 10, 10, 10, new Point2D(58, 11), ConsoleColor.DarkGreen, "O", 2, 1));
+            enemies.Add(new Slime(map, 10, 10, 10, 10, new Point2D(16, 30), ConsoleColor.DarkGreen, "O", 2, 1));
 
-            items.Add(new HealthItem(new Point2D(8, 8), map, ConsoleColor.Red, "H"));
+            items.Add(new HealthItem(new Point2D(20, 4), map, ConsoleColor.Red, "H"));
+            items.Add(new HealthItem(new Point2D(43, 13), map, ConsoleColor.Red, "H"));
+            items.Add(new HealthItem(new Point2D(63, 30), map, ConsoleColor.Red, "H"));
+            items.Add(new HealthItem(new Point2D(41, 27), map, ConsoleColor.Red, "H"));
+            items.Add(new HealthItem(new Point2D(28, 18), map, ConsoleColor.Red, "H"));
             items.Add(new ShieldItem(new Point2D(10, 15), map, ConsoleColor.Cyan, "S"));
-            items.Add(new KeyItem(new Point2D(4,4), map, ConsoleColor.DarkGray, "F"));
+            items.Add(new ShieldItem(new Point2D(8, 31), map, ConsoleColor.Cyan, "S"));
+            items.Add(new ShieldItem(new Point2D(66, 5), map, ConsoleColor.Cyan, "S"));
+            items.Add(new KeyItem(new Point2D(8, 19), map, ConsoleColor.DarkGray, "F"));
+            items.Add(new KeyItem(new Point2D(7, 13), map, ConsoleColor.DarkGray, "F"));
 
             map.AddEntity(player, player.position);
             foreach (var enemy in enemies)

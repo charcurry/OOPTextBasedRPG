@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Slime.cs" />
     <Compile Include="Bat.cs" />
