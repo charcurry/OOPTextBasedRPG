@@ -67,14 +67,7 @@ namespace OOPTextBasedRPG
                 CheckGameOver();
                 map.RenderMap();
                 hud.ShowHUD(player, enemies.ToArray());
-                if (enemies.All(e => e.healthSystem.isDead))
-                {
-                    RenderTextScreen("Victory");
-                }
-                if (player.healthSystem.isDead)
-                {
-                    RenderTextScreen("Game Over");
-                }
+                CheckForWinner();
             }
             Console.WriteLine();
             Console.WriteLine("Press any key to continue...");
@@ -84,6 +77,18 @@ namespace OOPTextBasedRPG
         {
             Console.Clear();
             Console.WriteLine(displayText);
+        }
+
+        private void CheckForWinner()
+        {
+            if (enemies.All(e => e.healthSystem.isDead))
+            {
+                RenderTextScreen("Victory");
+            }
+            if (player.healthSystem.isDead)
+            {
+                RenderTextScreen("Game Over");
+            }
         }
 
         public void CheckGameOver()
