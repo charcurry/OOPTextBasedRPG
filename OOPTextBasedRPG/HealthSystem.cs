@@ -11,13 +11,18 @@ namespace OOPTextBasedRPG
         #region Variables
         public int health;
         public int maxHealth;
+        public int shield;
+        public int maxShield;
         public bool isDead;
         #endregion
 
         #region Constructor
-        public HealthSystem(int initHealth)
+        public HealthSystem(int initHealth, int initShield, int maxHealth, int maxShield)
         {
             health = initHealth;
+            shield = initShield;
+            this.maxHealth = maxHealth;
+            this.maxShield = maxShield;
         }
         #endregion
 
@@ -25,17 +30,35 @@ namespace OOPTextBasedRPG
         {
             if (damage < 0)
             {
-                Console.WriteLine("Error: Entity Cannot Take " + damage + " Damage");
+                Console.WriteLine("Error: Player Cannot Take " + damage + " Damage");
             }
-            else if (health - damage <= 0)
+            else if (health - damage <= 0 && shield == 0)
             {
                 health = 0;
+                shield = 0;
                 isDead = true;
+            }
+            else if (health + shield - damage <= 0)
+            {
+                health = 0;
+                shield = 0;
+                isDead = true;
+            }
+            else if (shield - damage <= 0)
+            {
+                health -= (damage - shield);
+                shield = 0;
+            }
+            else if (shield > 0)
+            {
+                shield -= damage;
+
             }
             else if (health > 0)
             {
                 health -= damage;
             }
+
         }
 
         public void Heal(int hp)
@@ -44,13 +67,29 @@ namespace OOPTextBasedRPG
             {
                 Console.WriteLine("Error: Entity Cannot Heal " + hp + " HP");
             }
-            else if (health + hp > 100)
+            else if (health + hp > 20)
             {
                 health = maxHealth;
             }
             else
             {
                 health += hp;
+            }
+        }
+
+        public void RegenerateShield(int hp)
+        {
+            if (hp < 0)
+            {
+                Console.WriteLine("Error: Player Cannot Regenerate " + hp + " Shield");
+            }
+            else if (shield + hp > 20)
+            {
+                shield = maxShield;
+            }
+            else
+            {
+                shield += hp;
             }
         }
     }

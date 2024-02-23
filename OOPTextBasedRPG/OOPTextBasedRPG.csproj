@@ -44,9 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enemy.cs" />
-    <Compile Include="Enemy1.cs" />
-    <Compile Include="Enemy2.cs" />
-    <Compile Include="Enemy3.cs" />
+    <Compile Include="Slime.cs" />
+    <Compile Include="Bat.cs" />
+    <Compile Include="LightningSpirit.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="GameObject.cs" />

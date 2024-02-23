@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,32 +12,46 @@ namespace OOPTextBasedRPG
         #region Variables
         private readonly Map map;
         private readonly HUD hud;
-        private readonly Enemy enemy;
+        private readonly List<Enemy> enemies;
         private readonly Player player;
-        private readonly HealthItem healthItem;
+        private readonly List<Item> items;
         #endregion
 
         #region Constructor
         public GameManager()
         {
             map = new Map();
-            hud = new HUD();
-            enemy = new Enemy(map, 10, new Point2D(16, 10));
-            player = new Player(enemy, map, 10, new Point2D(3, 3));
-            healthItem = new HealthItem(new Point2D(8, 8), map, player);
+            hud = new HUD(map);
+            enemies = new List<Enemy>();
+            player = new Player(map, 10, 10, 20, 20, new Point2D(3, 3), 3, 1);
+            items = new List<Item>();
         }
         #endregion
 
         public void InitGame()
         {
+            enemies.Add(new Slime(map, 10, 10, 10, 10, new Point2D(16, 10), ConsoleColor.DarkGreen, "O", 2, 1));
+            enemies.Add(new Bat(map, 5, 3, 5, 3, new Point2D(16, 16), ConsoleColor.DarkBlue, "W", 1, 1));
+            enemies.Add(new LightningSpirit(map, 1, 5, 1, 5, new Point2D(9, 9), ConsoleColor.Yellow, "Y", 3, 2));
+
+            items.Add(new HealthItem(new Point2D(8, 8), map, ConsoleColor.Red, "H"));
+            items.Add(new ShieldItem(new Point2D(10, 15), map, ConsoleColor.Cyan, "S"));
+            items.Add(new KeyItem(new Point2D(4,4), map, ConsoleColor.DarkGray, "F"));
+
             map.AddEntity(player, player.position);
-            map.AddEntity(enemy, enemy.position);
-            map.AddItem(healthItem, healthItem.position);
+            foreach (var enemy in enemies)
+            {
+                map.AddEntity(enemy, enemy.position);
+            }
+            foreach (var item in items)
+            {
+                map.AddItem(item, item.position);
+            }
             map.GetEntities();
             map.GetItems();
             Console.CursorVisible = false;
             map.RenderMap();
-            hud.ShowHUD(player, enemy);
+            hud.ShowHUD(player, enemies.ToArray());
         }
 
         public void RunGameLoop()
@@ -44,15 +59,15 @@ namespace OOPTextBasedRPG
             while (!player.gameOver)
             {
                 player.PlayerDraw();
-                healthItem.ItemDraw();
-                enemy.EnemyDraw();
+                ItemsDraw();
+                EnemiesDraw();
                 player.PlayerUpdate();
-                enemy.EnemyUpdate();
+                EnemiesUpdate();
                 player.gaveDamage = false;
                 CheckGameOver();
                 map.RenderMap();
-                hud.ShowHUD(player, enemy);
-                if (enemy.healthSystem.isDead)
+                hud.ShowHUD(player, enemies.ToArray());
+                if (enemies.All(e => e.healthSystem.isDead))
                 {
                     RenderTextScreen("Victory");
                 }
@@ -73,10 +88,35 @@ namespace OOPTextBasedRPG
 
         public void CheckGameOver()
         {
-            if (player.healthSystem.isDead || enemy.healthSystem.isDead)
+            if (player.healthSystem.isDead || enemies.All(e => e.healthSystem.isDead))
             {
                 player.gameOver = true;
             }
         }
+
+        private void EnemiesDraw()
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.EnemyDraw();
+            }
+        }
+
+        private void EnemiesUpdate()
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.EnemyUpdate();
+            }
+        }
+
+        private void ItemsDraw()
+        {
+            foreach (var item in items)
+            {
+                item.ItemDraw();
+            }
+        }
+
     }
 }

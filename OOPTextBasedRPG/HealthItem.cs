@@ -8,14 +8,14 @@ namespace OOPTextBasedRPG
 {
     internal class HealthItem : Item
     {
-        public HealthItem(Point2D position, Map map, Player player) : base (position, map, player) 
+        public HealthItem(Point2D position, Map map, ConsoleColor color, string icon) : base (position, map, color, icon) 
         {
 
         }
 
         public override void PickupItem()
         {
-            player.healthSystem.Heal(3);
+            map.GetPlayer().healthSystem.Heal(3);
             isPickedUp = true;
         }
     }

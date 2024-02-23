@@ -12,11 +12,14 @@ namespace OOPTextBasedRPG
         #region Variables
         public HealthSystem healthSystem;
 
-        public int damageNumber = 1;
+        public Entity attackedEnemy;
+        public Entity attacker;
+
+        public int attackDamage;
 
         public bool gaveDamage;
 
-        public int moveSpeed = 1;
+        public int moveSpeed;
         #endregion
 
         public void Move(Map map, Point2D startPos, Point2D endPos)
@@ -29,9 +32,21 @@ namespace OOPTextBasedRPG
             {
                 return;
             }
+            else if (this == map.GetPlayer() && map.GetTile(endPos) == map.doorTile)
+            {
+                if (map.GetPlayer().numKeys > 0)
+                {
+                    map.SetTile(endPos, map.airTile);
+                    map.GetPlayer().numKeys--;
+                }
+            }
             else if (map.GetEntity(endPos) != null)
             {
                 Attack(map.GetEntity(endPos));
+                if (map.GetEntity(endPos).healthSystem.isDead)
+                {
+                    map.RemoveEntity(endPos);
+                }
             }
             else if (map.GetItem(endPos) != null && this == map.GetPlayer())
             {
@@ -49,18 +64,20 @@ namespace OOPTextBasedRPG
 
         public void Attack(Entity target)
         {
-            //Random random = new Random();
-            //int damage = random.Next(0, 2);
-            target.healthSystem.TakeDamage(damageNumber);
+            target.healthSystem.TakeDamage(attackDamage);
             gaveDamage = true;
+            attackedEnemy = target;
+            attacker = this;
         }
 
         #region Constructor
-        public Entity(int health, Point2D position)
+        public Entity(int health, int shield, int maxHealth, int maxShield, Point2D position, int attackDamage, int moveSpeed)
         {
             Debug.WriteLine("Entity Class Constructed");
-            healthSystem = new HealthSystem(health);
+            healthSystem = new HealthSystem(health, shield, maxHealth, maxShield);
             this.position = new Point2D(position.x, position.y);
+            this.attackDamage = attackDamage;
+            this.moveSpeed = moveSpeed;
         }
         #endregion
     }

@@ -10,13 +10,15 @@ namespace OOPTextBasedRPG
     {
         public bool isPickedUp = false;
         public readonly Map map;
-        public readonly Player player;
+        public readonly ConsoleColor color;
+        public readonly string icon;
 
-        public Item(Point2D position, Map map, Player player)
+        public Item(Point2D position, Map map, ConsoleColor color, string icon)
         {
-            this.player = player;
             this.map = map;
             this.position = new Point2D(position.x, position.y);
+            this.color = color;
+            this.icon = icon;
         }
 
         public void ItemDraw()
@@ -24,7 +26,9 @@ namespace OOPTextBasedRPG
             if (!isPickedUp)
             {
                 Console.SetCursorPosition(this.position.x, this.position.y);
-                Console.WriteLine("T");
+                Console.ForegroundColor = color;
+                Console.WriteLine(icon);
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 

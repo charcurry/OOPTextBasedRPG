@@ -8,6 +8,11 @@ namespace OOPTextBasedRPG
 {
     internal class HUD
     {
+        public Enemy lastEnemyAttacked;
+        public Enemy attacker;
+
+        private readonly Map map;
+
         #region HUD
         static void RenderLegend()
         {
@@ -29,18 +34,49 @@ namespace OOPTextBasedRPG
             Console.WriteLine();
         }
 
-        static void RenderHealth(Player player, Enemy enemy)
+        public void RenderHUD(Player player, Enemy[] enemies)
         {
-            Console.WriteLine("Player Health: " + player.healthSystem.health);
-            Console.WriteLine("Enemy Health: " + enemy.healthSystem.health);
+            if (map.GetPlayer() != null)
+            {
+                lastEnemyAttacked = (Enemy)map.GetPlayer().attackedEnemy;
+            }
+            attacker = GetAttacker(enemies);
+            Console.WriteLine("Player Health: " + player.healthSystem.health + " Player Shield: " + player.healthSystem.shield);
+            Console.WriteLine("# of Keys: " + player.numKeys);
+            if (lastEnemyAttacked != null)
+            {
+                Console.WriteLine("Enemy Health: " + lastEnemyAttacked.healthSystem.health + " Enemy Shield: " + lastEnemyAttacked.healthSystem.shield);
+            }
+            else if (attacker != null)
+            {
+                Console.WriteLine("Enemy Health: " + attacker.healthSystem.health + " Enemy Shield: " + attacker.healthSystem.shield);
+            }
             Console.WriteLine();
         }
 
-        public void ShowHUD(Player player, Enemy enemy)
+        public void ShowHUD(Player player, Enemy[] enemies)
         {
             RenderLegend();
-            RenderHealth(player, enemy);
+            RenderHUD(player, enemies);
         }
+
+        public HUD(Map map)
+        {
+            this.map = map;
+        }
+
+        public Enemy GetAttacker(Enemy[] enemies)
+        {
+            foreach (var enemy in enemies)
+            {
+                if (enemy == enemy.attacker)
+                {
+                    return enemy;
+                }
+            }
+            return null;
+        }
+
         #endregion
     }
 }

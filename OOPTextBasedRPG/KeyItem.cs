@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace OOPTextBasedRPG
 {
-    internal class KeyItem
+    internal class KeyItem : Item
     {
+        public KeyItem(Point2D position, Map map, ConsoleColor color, string icon) : base(position, map, color, icon)
+        {
+
+        }
+
+        public override void PickupItem()
+        {
+            map.GetPlayer().numKeys++;
+            isPickedUp = true;
+        }
     }
 }

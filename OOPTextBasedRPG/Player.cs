@@ -21,8 +21,9 @@ namespace OOPTextBasedRPG
 
         #region Classes
         readonly Map map;
-        public Enemy enemy;
         #endregion
+
+        public int numKeys;
 
         public void PlayerDraw()
         {
@@ -42,50 +43,50 @@ namespace OOPTextBasedRPG
                 if (input.Key == ConsoleKey.W)
                 {
                     int newY = position.y - moveSpeed;
-                    int newEnemyY = enemy.position.y - moveSpeed;
+                    //int newEnemyY = enemy.position.y - moveSpeed;
                     Point2D newPosition = new Point2D(position.x, newY);
-                    Point2D newEnemyPosition = new Point2D(enemy.position.x, newEnemyY);
+                    //Point2D newEnemyPosition = new Point2D(enemy.position.x, newEnemyY);
                     Move(map, position, newPosition);
-                    if (gaveDamage)
-                    {
-                        enemy.Move(map, enemy.position, newEnemyPosition);
-                    }
+                    //if (gaveDamage)
+                    //{
+                    //    enemy.Move(map, enemy.position, newEnemyPosition);
+                    //}
                 }
                 else if (input.Key == ConsoleKey.A)
                 {
                     int newX = position.x - moveSpeed;
-                    int newEnemyX = enemy.position.x - moveSpeed;
+                    //int newEnemyX = enemy.position.x - moveSpeed;
                     Point2D newPosition = new Point2D(newX, position.y);
-                    Point2D newEnemyPosition = new Point2D(newEnemyX, enemy.position.y);
+                    //Point2D newEnemyPosition = new Point2D(newEnemyX, enemy.position.y);
                     Move(map, position, newPosition);
-                    if (gaveDamage)
-                    {
-                        enemy.Move(map, enemy.position, newEnemyPosition);
-                    }
+                    //if (gaveDamage)
+                    //{
+                    //    enemy.Move(map, enemy.position, newEnemyPosition);
+                    //}
                 }
                 else if (input.Key == ConsoleKey.D)
                 {
                     int newX = position.x + moveSpeed;
-                    int newEnemyX = enemy.position.x + moveSpeed;
+                    //int newEnemyX = enemy.position.x + moveSpeed;
                     Point2D newPosition = new Point2D(newX, position.y);
-                    Point2D newEnemyPosition = new Point2D(newEnemyX, enemy.position.y);
+                    //Point2D newEnemyPosition = new Point2D(newEnemyX, enemy.position.y);
                     Move(map, position, newPosition);
-                    if (gaveDamage)
-                    {
-                        enemy.Move(map, enemy.position, newEnemyPosition);
-                    }
+                    //if (gaveDamage)
+                    //{
+                    //    enemy.Move(map, enemy.position, newEnemyPosition);
+                    //}
                 }
                 else if (input.Key == ConsoleKey.S)
                 {
                     int newY = position.y + moveSpeed;
-                    int newEnemyY = enemy.position.y + moveSpeed;
+                    //int newEnemyY = enemy.position.y + moveSpeed;
                     Point2D newPosition = new Point2D(position.x, newY);
-                    Point2D newEnemyPosition = new Point2D(enemy.position.x, newEnemyY);
+                    //Point2D newEnemyPosition = new Point2D(enemy.position.x, newEnemyY);
                     Move(map, position, newPosition);
-                    if (gaveDamage)
-                    {
-                        enemy.Move(map, enemy.position, newEnemyPosition);
-                    }
+                    //if (gaveDamage)
+                    //{
+                    //    enemy.Move(map, enemy.position, newEnemyPosition);
+                    //}
                 }
                 else if (input.Key == ConsoleKey.Escape)
                 {
@@ -94,10 +95,10 @@ namespace OOPTextBasedRPG
             }
         }
 
+
         #region Constructor
-        public Player(Enemy enemy, Map map, int health, Point2D position) : base(health, position)
+        public Player(Map map, int health, int shield, int maxHealth, int maxShield, Point2D position, int attackDamage, int moveSpeed) : base(health, shield, maxHealth, maxShield, position, attackDamage, moveSpeed)
         {
-            this.enemy = enemy;
             this.map = map;
             Debug.WriteLine("Player Class Constructed");
         }

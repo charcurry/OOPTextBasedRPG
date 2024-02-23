@@ -5,13 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace OOPTextBasedRPG
 {
     internal class Map
     {
-        #region Wall Tile Char
+        #region Wall & Door Tile Char
         public char wallTile = '^';
+        public char doorTile = 'E';
+        public char airTile = ' ';
         #endregion
 
         #region Border Offset
@@ -84,7 +88,7 @@ namespace OOPTextBasedRPG
 
         public void RemoveEntity(Point2D position)
         {
-            foreach (var entity in GetEntities())
+            foreach (var entity in GetEntities().ToList())
             {
                 if (entity.position.y == position.y && entity.position.x == position.x)
                 {
@@ -217,6 +221,17 @@ namespace OOPTextBasedRPG
         public char GetTile(Point2D coords)
         {
             return mapRows[coords.y - borderOffset][coords.x - borderOffset];
+        }
+
+        public void SetTile(Point2D position, char newTile)
+        {
+            if (position.y >= borderOffset && position.y < mapYLength + borderOffset && position.x >= borderOffset && position.x < mapXLength + borderOffset)
+            {
+                var rowArray = mapRows[position.y - borderOffset].ToCharArray();
+                rowArray[position.x - borderOffset] = newTile;
+                mapRows[position.y - borderOffset] = new string(rowArray);
+            }
+
         }
     }
 }
