@@ -12,6 +12,8 @@ namespace OOPTextBasedRPG
         #region Variables
         public HealthSystem healthSystem;
 
+        public Item pickedUpItem;
+
         public Entity attackedEnemy;
         public Entity attacker;
 
@@ -51,7 +53,8 @@ namespace OOPTextBasedRPG
             else if (map.GetItem(endPos) != null && this == map.GetPlayer())
             {
                 map.GetItem(endPos).PickupItem();
-                map.RemoveItem(endPos);
+                pickedUpItem = map.GetItem(endPos);
+                map.RemoveItem(endPos); 
                 map.AddEntity(map.GetEntity(startPos), endPos);
                 map.RemoveEntity(startPos);
             }

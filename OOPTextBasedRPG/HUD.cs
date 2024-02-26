@@ -9,6 +9,7 @@ namespace OOPTextBasedRPG
     internal class HUD
     {
         public Enemy lastEnemyAttacked;
+        public Item lastItemPickedUp;
         public Enemy attacker;
 
         private readonly Map map;
@@ -51,13 +52,21 @@ namespace OOPTextBasedRPG
             Console.WriteLine("# of Keys: " + player.numKeys);
             if (lastEnemyAttacked != null)
             {
-                Console.WriteLine("Enemy Health: " + lastEnemyAttacked.healthSystem.health + "  " + "Enemy Shield: " + lastEnemyAttacked.healthSystem.shield + "  ");
+                Console.WriteLine("Last Enemy Health: " + lastEnemyAttacked.healthSystem.health + "  " + "Last Enemy Shield: " + lastEnemyAttacked.healthSystem.shield + "  ");
             }
             else if (attacker != null)
             {
-                Console.WriteLine("Enemy Health: " + attacker.healthSystem.health + "  " + "Enemy Shield: " + attacker.healthSystem.shield + "  ");
+                Console.WriteLine("Last Enemy Health: " + attacker.healthSystem.health + "  " + "Last Enemy Shield: " + attacker.healthSystem.shield + "  ");
             }
             Console.WriteLine();
+            if (map.GetPlayer() != null)
+            {
+                lastItemPickedUp = (Item)map.GetPlayer().pickedUpItem;
+            }
+            if (lastItemPickedUp != null)
+            {
+                Console.WriteLine("Last Item Picked Up: " + lastItemPickedUp.GetType().Name + "           ");
+            }
         }
 
         public void ShowHUD(Player player, Enemy[] enemies)

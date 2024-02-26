@@ -8,7 +8,7 @@ namespace OOPTextBasedRPG
 {
     internal class HealthItem : Item
     {
-        public HealthItem(Point2D position, Map map, ConsoleColor color, string icon) : base (position, map, color, icon) 
+        public HealthItem(Point2D position, Map map, ConsoleColor color, string icon) : base(position, map, color, icon) 
         {
 
         }
