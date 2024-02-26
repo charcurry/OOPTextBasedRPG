@@ -47,15 +47,15 @@ namespace OOPTextBasedRPG
                 lastEnemyAttacked = (Enemy)map.GetPlayer().attackedEnemy;
             }
             attacker = GetAttacker(enemies);
-            Console.WriteLine("Player Health: " + player.healthSystem.health + " Player Shield: " + player.healthSystem.shield);
+            Console.WriteLine("Player Health: " + player.healthSystem.health + "  " + "Player Shield: " + player.healthSystem.shield + "  ");
             Console.WriteLine("# of Keys: " + player.numKeys);
             if (lastEnemyAttacked != null)
             {
-                Console.WriteLine("Enemy Health: " + lastEnemyAttacked.healthSystem.health + " Enemy Shield: " + lastEnemyAttacked.healthSystem.shield);
+                Console.WriteLine("Enemy Health: " + lastEnemyAttacked.healthSystem.health + "  " + "Enemy Shield: " + lastEnemyAttacked.healthSystem.shield + "  ");
             }
             else if (attacker != null)
             {
-                Console.WriteLine("Enemy Health: " + attacker.healthSystem.health + " Enemy Shield: " + attacker.healthSystem.shield);
+                Console.WriteLine("Enemy Health: " + attacker.healthSystem.health + "  " + "Enemy Shield: " + attacker.healthSystem.shield + "  ");
             }
             Console.WriteLine();
         }

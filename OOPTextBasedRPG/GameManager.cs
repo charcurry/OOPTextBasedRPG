@@ -33,7 +33,7 @@ namespace OOPTextBasedRPG
             Console.WindowHeight = 63;
             Console.WindowWidth = 240;
             enemies.Add(new Slime(map, 10, 10, 10, 10, new Point2D(16, 9), ConsoleColor.DarkGreen, "O", 2, 1));
-            enemies.Add(new Slime(map, 5, 3, 5, 3, new Point2D(16, 15), ConsoleColor.DarkGreen, "O", 1, 1));
+            enemies.Add(new Slime(map, 10, 10, 10, 10, new Point2D(16, 15), ConsoleColor.DarkGreen, "O", 1, 1));
             enemies.Add(new LightningSpirit(map, 1, 5, 1, 5, new Point2D(84, 12), ConsoleColor.Yellow, "Y", 3, 2));
             enemies.Add(new LightningSpirit(map, 1, 5, 1, 5, new Point2D(11, 19), ConsoleColor.Yellow, "Y", 3, 2));
             enemies.Add(new LightningSpirit(map, 1, 5, 1, 5, new Point2D(77, 28), ConsoleColor.Yellow, "Y", 3, 2));
