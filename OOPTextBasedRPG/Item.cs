@@ -32,6 +32,9 @@ namespace OOPTextBasedRPG
             }
         }
 
-        public abstract void PickupItem();
+        public virtual void PickupItem()
+        {
+            isPickedUp = true;
+        }
     }
 }

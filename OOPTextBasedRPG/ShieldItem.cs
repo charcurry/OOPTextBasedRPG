@@ -16,7 +16,7 @@ namespace OOPTextBasedRPG
         public override void PickupItem()
         {
             map.GetPlayer().healthSystem.RegenerateShield(5);
-            isPickedUp = true;
+            base.PickupItem();
         }
     }
 }

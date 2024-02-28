@@ -17,7 +17,7 @@ namespace OOPTextBasedRPG
         public override void PickupItem()
         {
             map.GetPlayer().numKeys++;
-            isPickedUp = true;
+            base.PickupItem();
         }
     }
 }
