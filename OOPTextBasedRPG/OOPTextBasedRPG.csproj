@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Slime.cs" />
     <Compile Include="Bat.cs" />
     <Compile Include="LightningSpirit.cs" />
