@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
     internal class Bat : Enemy
     {
-        public Bat(Map map, int health, int shield, int maxHealth, int maxShield, Point2D position, ConsoleColor color, string icon, int attackDamage, int moveSpeed) : base(map, health, shield, maxHealth, maxShield, position, color, icon, attackDamage, moveSpeed)
+        public Bat(Map map, Point2D position) : base(map, position)
         {
-
+            attackDamage = batDamage;
+            moveSpeed = batSpeed;
+            healthSystem.health = batHealth;
+            healthSystem.maxHealth = batMaxHealth;
+            healthSystem.shield = batShield;
+            healthSystem.maxHealth = batMaxShield;
+            icon = batIcon;
+            color = batColor;
         }
 
         public override void EnemyUpdate()

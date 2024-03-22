@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
     internal class LightningSpirit : Enemy
     {
-        public LightningSpirit(Map map, int health, int shield, int maxHealth, int maxShield, Point2D position, ConsoleColor color, string icon, int attackDamage, int moveSpeed) : base(map, health, shield, maxHealth, maxShield, position, color, icon, attackDamage, moveSpeed)
+        public LightningSpirit(Map map, Point2D position) : base(map, position)
         {
-
+            attackDamage = lightningSpiritDamage;
+            moveSpeed = lightningSpiritSpeed;
+            healthSystem.health = lightningSpiritHealth;
+            healthSystem.maxHealth = lightningSpiritMaxHealth;
+            healthSystem.shield = lightningSpiritShield;
+            healthSystem.maxHealth = lightningSpiritMaxShield;
+            icon = lightningSpiritIcon;
+            color = lightningSpiritColor;
         }
 
         public override void EnemyUpdate()

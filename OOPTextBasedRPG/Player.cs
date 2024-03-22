@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static OOPTextBasedRPG.Settings;
+
 
 namespace OOPTextBasedRPG
 {
@@ -98,9 +100,15 @@ namespace OOPTextBasedRPG
 
 
         #region Constructor
-        public Player(Map map, int health, int shield, int maxHealth, int maxShield, Point2D position, int attackDamage, int moveSpeed) : base(health, shield, maxHealth, maxShield, position, attackDamage, moveSpeed)
+        public Player(Map map, Point2D position) : base(position)
         {
             this.map = map;
+            attackDamage = playerDamage;
+            moveSpeed = playerSpeed;
+            healthSystem.health = playerHealth;
+            healthSystem.maxHealth = playerMaxHealth;
+            healthSystem.shield = playerShield;
+            healthSystem.maxHealth = playerMaxShield;
             Debug.WriteLine("Player Class Constructed");
         }
         #endregion

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
@@ -12,9 +13,16 @@ namespace OOPTextBasedRPG
         int distanceX;
         int distanceY;
 
-        public Slime(Map map, int health, int shield, int maxHealth, int maxShield, Point2D position, ConsoleColor color, string icon, int attackDamage, int moveSpeed) : base(map, health, shield, maxHealth, maxShield, position, color, icon, attackDamage, moveSpeed)
+        public Slime(Map map, Point2D position) : base(map, position)
         {
-
+            attackDamage = slimeDamage;
+            moveSpeed = slimeSpeed;
+            healthSystem.health = slimeHealth;
+            healthSystem.maxHealth = slimeMaxHealth;
+            healthSystem.shield = slimeShield;
+            healthSystem.maxHealth = slimeMaxShield;
+            icon = slimeIcon;
+            color = slimeColor;
         }
 
         public override void EnemyUpdate()

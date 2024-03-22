@@ -74,13 +74,13 @@ namespace OOPTextBasedRPG
         }
 
         #region Constructor
-        public Entity(int health, int shield, int maxHealth, int maxShield, Point2D position, int attackDamage, int moveSpeed)
+        public Entity(Point2D position)
         {
             Debug.WriteLine("Entity Class Constructed");
-            healthSystem = new HealthSystem(health, shield, maxHealth, maxShield);
+            healthSystem = new HealthSystem();
             this.position = new Point2D(position.x, position.y);
-            this.attackDamage = attackDamage;
-            this.moveSpeed = moveSpeed;
+            //this.attackDamage = attackDamage;
+            //this.moveSpeed = moveSpeed;
         }
         #endregion
     }

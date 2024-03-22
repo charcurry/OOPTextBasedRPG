@@ -9,16 +9,14 @@ namespace OOPTextBasedRPG
 {
     internal abstract class Enemy : Entity
     {
-        private readonly ConsoleColor color;
-        private readonly string icon;
+        public ConsoleColor color;
+        public string icon;
         public readonly Map map;
 
         #region Constructor
-        public Enemy(Map map, int health, int shield, int maxHealth, int maxShield, Point2D position, ConsoleColor color, string icon, int attackDamage, int moveSpeed) : base(health, shield, maxHealth, maxShield, position, attackDamage, moveSpeed)
+        public Enemy(Map map, Point2D position) : base(position)
         {
             this.map = map;
-            this.color = color;
-            this.icon = icon;
             Debug.WriteLine("Enemy Class Constructed");
         }
         #endregion

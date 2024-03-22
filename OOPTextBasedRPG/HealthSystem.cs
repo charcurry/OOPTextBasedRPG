@@ -17,12 +17,9 @@ namespace OOPTextBasedRPG
         #endregion
 
         #region Constructor
-        public HealthSystem(int initHealth, int initShield, int maxHealth, int maxShield)
+        public HealthSystem()
         {
-            health = initHealth;
-            shield = initShield;
-            this.maxHealth = maxHealth;
-            this.maxShield = maxShield;
+
         }
         #endregion
 
