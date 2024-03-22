@@ -20,8 +20,11 @@ namespace OOPTextBasedRPG
 
         public override void PickupItem()
         {
-            map.GetPlayer().healthSystem.Heal(healingValue);
-            base.PickupItem();
+            if (map.GetPlayer().healthSystem.health != map.GetPlayer().healthSystem.maxHealth)
+            {
+                map.GetPlayer().healthSystem.Heal(healingValue);
+                base.PickupItem();
+            }
         }
     }
 }

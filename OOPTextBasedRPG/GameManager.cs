@@ -18,17 +18,20 @@ namespace OOPTextBasedRPG
             hud = new HUD(map);
             player = new Player(map, new Point2D(3, 3));
             enemyManager = new EnemyManager(map);
-            itemManager = new ItemManager();
+            itemManager = new ItemManager(map);
         }
 
         public void Init()
         {
+            //Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            //Console.SetBufferSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            //Console.SetWindowPosition(0, 0);
             enemyManager.InitEnemies();
-            itemManager.InitItems(map);
+            itemManager.InitItems();
 
             map.AddEntity(player, player.position);
             enemyManager.AddEnemies();
-            itemManager.AddItems(map);
+            itemManager.AddItems();
 
             map.GetEntities();
             map.GetItems();

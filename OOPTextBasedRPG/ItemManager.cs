@@ -9,13 +9,15 @@ namespace OOPTextBasedRPG
     internal class ItemManager
     {
         public readonly List<Item> items;
+        public readonly Map map;
 
-        public ItemManager()
+        public ItemManager(Map map)
         {
             items = new List<Item>();
+            this.map = map;
         }
 
-        public void InitItems(Map map)
+        public void InitItems()
         {
             items.Add(new HealthItem(new Point2D(20, 4), map));
             items.Add(new HealthItem(new Point2D(43, 13), map));
@@ -29,7 +31,7 @@ namespace OOPTextBasedRPG
             items.Add(new KeyItem(new Point2D(7, 13), map));
         }
 
-        public void AddItems(Map map)
+        public void AddItems()
         {
             foreach (var item in items)
             {

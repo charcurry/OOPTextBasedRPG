@@ -12,9 +12,11 @@ namespace OOPTextBasedRPG
         public Item lastItemPickedUp;
         public Enemy attacker;
 
+        public int timerDuration = 3;
+
         private readonly Map map;
 
-        #region HUD
+        #region HUD Methods
         static void RenderLegend()
         {
             Console.WriteLine("@ - Player");
@@ -41,7 +43,7 @@ namespace OOPTextBasedRPG
             Console.WriteLine();
         }
 
-        public void RenderHUD(Player player, Enemy[] enemies)
+        public async void RenderHUD(Player player, Enemy[] enemies)
         {
             if (map.GetPlayer() != null)
             {
@@ -65,11 +67,27 @@ namespace OOPTextBasedRPG
             Console.WriteLine();
             if (map.GetPlayer() != null)
             {
-                lastItemPickedUp = (Item)map.GetPlayer().pickedUpItem;
+                lastItemPickedUp = map.GetPlayer().pickedUpItem;
             }
-            if (lastItemPickedUp != null)
+            if (lastItemPickedUp != null && map.GetPlayer().couldPickUp == true)
             {
-                Console.WriteLine("Last Item Picked Up: " + lastItemPickedUp.GetType().Name + "           ");
+                Console.WriteLine("Last Item Picked Up: " + lastItemPickedUp.GetType().Name + "                   ");
+            }
+            else if (map.GetPlayer().couldPickUp == false) 
+            {
+                Console.WriteLine("Cannot Pick Up Item as Player Resource is Full               ");
+                await Task.Delay(timerDuration * 1000);
+                if (lastItemPickedUp != null)
+                {
+                    map.GetPlayer().couldPickUp = true;
+                }
+                else if (lastItemPickedUp == null)
+                {
+                    //Console.SetCursorPosition(0, 48);
+                    //Console.WriteLine("                                                                 ");
+                    map.GetPlayer().couldPickUp = true;
+                    //Console.SetCursorPosition(0, 0);
+                }
             }
         }
 

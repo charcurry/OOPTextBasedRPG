@@ -42,14 +42,13 @@ namespace OOPTextBasedRPG
             {
                 while (Console.KeyAvailable) { Console.ReadKey(true); }
                 ConsoleKeyInfo input = Console.ReadKey(true);
-                Debug.WriteLine(map.GetTile(position));
                 if (input.Key == ConsoleKey.W)
                 {
                     int newY = position.y - moveSpeed;
-                    //int newEnemyY = enemy.position.y - moveSpeed;
                     Point2D newPosition = new Point2D(position.x, newY);
-                    //Point2D newEnemyPosition = new Point2D(enemy.position.x, newEnemyY);
                     Move(map, position, newPosition);
+                    //int newEnemyY = enemy.position.y - moveSpeed;
+                    //Point2D newEnemyPosition = new Point2D(enemy.position.x, newEnemyY);
                     //if (gaveDamage)
                     //{
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
@@ -58,10 +57,10 @@ namespace OOPTextBasedRPG
                 else if (input.Key == ConsoleKey.A)
                 {
                     int newX = position.x - moveSpeed;
-                    //int newEnemyX = enemy.position.x - moveSpeed;
                     Point2D newPosition = new Point2D(newX, position.y);
-                    //Point2D newEnemyPosition = new Point2D(newEnemyX, enemy.position.y);
                     Move(map, position, newPosition);
+                    //int newEnemyX = enemy.position.x - moveSpeed;
+                    //Point2D newEnemyPosition = new Point2D(newEnemyX, enemy.position.y);
                     //if (gaveDamage)
                     //{
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
@@ -70,10 +69,10 @@ namespace OOPTextBasedRPG
                 else if (input.Key == ConsoleKey.D)
                 {
                     int newX = position.x + moveSpeed;
-                    //int newEnemyX = enemy.position.x + moveSpeed;
                     Point2D newPosition = new Point2D(newX, position.y);
-                    //Point2D newEnemyPosition = new Point2D(newEnemyX, enemy.position.y);
                     Move(map, position, newPosition);
+                    //int newEnemyX = enemy.position.x + moveSpeed;
+                    //Point2D newEnemyPosition = new Point2D(newEnemyX, enemy.position.y);
                     //if (gaveDamage)
                     //{
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
@@ -82,10 +81,10 @@ namespace OOPTextBasedRPG
                 else if (input.Key == ConsoleKey.S)
                 {
                     int newY = position.y + moveSpeed;
-                    //int newEnemyY = enemy.position.y + moveSpeed;
                     Point2D newPosition = new Point2D(position.x, newY);
-                    //Point2D newEnemyPosition = new Point2D(enemy.position.x, newEnemyY);
                     Move(map, position, newPosition);
+                    //int newEnemyY = enemy.position.y + moveSpeed;
+                    //Point2D newEnemyPosition = new Point2D(enemy.position.x, newEnemyY);
                     //if (gaveDamage)
                     //{
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
@@ -108,7 +107,7 @@ namespace OOPTextBasedRPG
             healthSystem.health = playerHealth;
             healthSystem.maxHealth = playerMaxHealth;
             healthSystem.shield = playerShield;
-            healthSystem.maxHealth = playerMaxShield;
+            healthSystem.maxShield = playerMaxShield;
             icon = playerIcon;
             color = playerColor;
             Debug.WriteLine("Player Class Constructed");

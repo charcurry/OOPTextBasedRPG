@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,11 @@ namespace OOPTextBasedRPG
 
         public override void PickupItem()
         {
-            map.GetPlayer().healthSystem.RegenerateShield(5);
-            base.PickupItem();
+            if (map.GetPlayer().healthSystem.shield != map.GetPlayer().healthSystem.maxShield)
+            {
+                map.GetPlayer().healthSystem.RegenerateShield(healingValue);
+                base.PickupItem();
+            }
         }
     }
 }

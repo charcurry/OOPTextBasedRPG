@@ -35,7 +35,7 @@ namespace OOPTextBasedRPG
                     distanceY = Math.Abs(position.y - map.GetPlayer().position.y);
                 }
 
-                if (distanceX <= 5 && distanceY <= 5) 
+                if (distanceX <= slimeMaxDetectionRadius && distanceY <= slimeMaxDetectionRadius) 
                 {
                     Random random = new Random();
                     int direction = random.Next(0, 4);

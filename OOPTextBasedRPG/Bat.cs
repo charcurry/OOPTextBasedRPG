@@ -27,6 +27,7 @@ namespace OOPTextBasedRPG
             {
                 Random random = new Random();
                 int direction = random.Next(0, 4);
+
                 switch (direction)
                 {
                     case 0:

@@ -22,10 +22,61 @@ namespace OOPTextBasedRPG
         public bool gaveDamage;
 
         public int moveSpeed;
+
+        public bool couldPickUp = true;
         #endregion
 
         public void Move(Map map, Point2D startPos, Point2D endPos)
         {
+            // this is a check for any entity with a move speed above 2 to make sure there is no clipping out of bounds
+            if (moveSpeed >= 2)
+            {
+                int deltaX = Math.Abs(endPos.x - startPos.x);
+                int deltaY = Math.Abs(endPos.y - startPos.y);
+                int stepX = Math.Sign(endPos.x - startPos.x);
+                int stepY = Math.Sign(endPos.y - startPos.y);
+
+                int x = startPos.x;
+                int y = startPos.y;
+
+                if (deltaX >= deltaY)
+                {
+                    int error = deltaX / 2;
+                    for (int i = 0; i < deltaX; i++)
+                    {
+                        if (map.GetTile(new Point2D(x, y)) == map.wallTile)
+                        {
+                            return;
+                        }
+                        error -= deltaY;
+                        if (error < 0)
+                        {
+                            y += stepY;
+                            error += deltaX;
+                        }
+                        x += stepX;
+                    }
+                }
+                else
+                {
+                    int error = deltaY / 2;
+                    for (int i = 0; i < deltaY; i++)
+                    {
+                        if (map.GetTile(new Point2D(x, y)) == map.wallTile)
+                        {
+                            return;
+                        }
+                        error -= deltaX;
+                        if (error < 0)
+                        {
+                            x += stepX;
+                            error += deltaY;
+                        }
+                        y += stepY;
+                    }
+                }
+            }
+
             if (endPos.y < 0 + map.borderOffset || endPos.x < 0 + map.borderOffset || endPos.y >= map.mapYLength + map.borderOffset || endPos.x >= map.mapXLength + map.borderOffset)
             {
                 return;
@@ -53,10 +104,18 @@ namespace OOPTextBasedRPG
             else if (map.GetItem(endPos) != null && this == map.GetPlayer())
             {
                 map.GetItem(endPos).PickupItem();
-                pickedUpItem = map.GetItem(endPos);
-                map.RemoveItem(endPos); 
-                map.AddEntity(map.GetEntity(startPos), endPos);
-                map.RemoveEntity(startPos);
+                if (map.GetItem(endPos).isPickedUp)
+                {
+                    pickedUpItem = map.GetItem(endPos);
+                    map.RemoveItem(endPos);
+                    //map.AddEntity(map.GetEntity(startPos), endPos);
+                    //map.RemoveEntity(startPos);
+                    couldPickUp = true;
+                }
+                else
+                {
+                    couldPickUp = false;
+                }
             }
             else
             {
@@ -79,8 +138,6 @@ namespace OOPTextBasedRPG
             Debug.WriteLine("Entity Class Constructed");
             healthSystem = new HealthSystem();
             this.position = new Point2D(position.x, position.y);
-            //this.attackDamage = attackDamage;
-            //this.moveSpeed = moveSpeed;
         }
         #endregion
     }

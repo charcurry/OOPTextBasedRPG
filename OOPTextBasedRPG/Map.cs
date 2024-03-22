@@ -28,8 +28,6 @@ namespace OOPTextBasedRPG
         #endregion
 
         #region Map Axis Lengths
-        private readonly string[] originalMapRows;
-
         public int mapXLength = mapRows[0].Length;
         public int mapYLength = mapRows.Length;
         #endregion
@@ -144,7 +142,6 @@ namespace OOPTextBasedRPG
         #region Constructor
         public Map()
         {
-            originalMapRows = File.ReadAllLines(path);
             Debug.WriteLine("Map Class Constructed");
         }
         #endregion

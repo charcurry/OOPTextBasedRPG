@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace OOPTextBasedRPG
         {
             if (damage < 0)
             {
-                Console.WriteLine("Error: Player Cannot Take " + damage + " Damage");
+                Debug.WriteLine("Error: Player Cannot Take " + damage + " Damage");
             }
             else if (health - damage <= 0 && shield == 0)
             {
@@ -62,7 +63,7 @@ namespace OOPTextBasedRPG
         {
             if (hp < 0)
             {
-                Console.WriteLine("Error: Entity Cannot Heal " + hp + " HP");
+                Debug.WriteLine("Error: Entity Cannot Heal " + hp + " HP");
             }
             else if (health + hp > maxHealth)
             {
@@ -78,7 +79,7 @@ namespace OOPTextBasedRPG
         {
             if (hp < 0)
             {
-                Console.WriteLine("Error: Player Cannot Regenerate " + hp + " Shield");
+                Debug.WriteLine("Error: Player Cannot Regenerate " + hp + " Shield");
             }
             else if (shield + hp > maxShield)
             {
