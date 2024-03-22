@@ -32,7 +32,9 @@ namespace OOPTextBasedRPG
             if (!healthSystem.isDead)
             {
                 Console.SetCursorPosition(this.position.x, this.position.y);
+                Console.ForegroundColor = color;
                 Console.WriteLine("@");
+                Console.ForegroundColor = defaultConsoleColor;
             }
         }
 

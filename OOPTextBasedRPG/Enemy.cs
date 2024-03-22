@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
@@ -26,7 +27,7 @@ namespace OOPTextBasedRPG
                 Console.SetCursorPosition(this.position.x, this.position.y);
                 Console.ForegroundColor = color;
                 Console.WriteLine(icon);
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = defaultConsoleColor;
             }
         }
 

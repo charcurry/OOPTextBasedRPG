@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
@@ -12,39 +13,44 @@ namespace OOPTextBasedRPG
         public Item lastItemPickedUp;
         public Enemy attacker;
 
-        public int timerDuration = 3;
+        public int timerDuration = HUDTimerDuration;
 
         private readonly Map map;
 
         #region HUD Methods
         static void RenderLegend()
         {
+            Console.ForegroundColor = playerColor;
             Console.WriteLine("@ - Player");
+            Console.ForegroundColor = wallTileColor;
             Console.WriteLine("# - Walls (Cannot move through)");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = lightningSpiritColor;
             Console.WriteLine("Y - Lightning Spirits");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.ForegroundColor = defaultConsoleColor;
+            Console.ForegroundColor = batColor;
             Console.WriteLine("W - Bats");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = defaultConsoleColor;
+            Console.ForegroundColor = healthItemColor;
             Console.WriteLine("H - Health Pickups");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = defaultConsoleColor;
+            Console.ForegroundColor = shieldItemColor;
             Console.WriteLine("S - Shield Pickups");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.ForegroundColor = defaultConsoleColor;
+            Console.ForegroundColor = slimeColor;
             Console.WriteLine("O - Slimes");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.ForegroundColor = defaultConsoleColor;
+            Console.ForegroundColor = keyItemColor;
             Console.WriteLine("F - Keys");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("E - Doors");
+            Console.ForegroundColor = doorTileColor;
+            Console.WriteLine("E - Doors (Locked)");
+            Console.ForegroundColor = defaultConsoleColor;
             Console.WriteLine();
         }
 
         public async void RenderHUD(Player player, Enemy[] enemies)
         {
+            Console.WriteLine("Player Objective: Defeat All of the Enemies Without Dying");
+            Console.WriteLine();
             if (map.GetPlayer() != null)
             {
                 lastEnemyAttacked = (Enemy)map.GetPlayer().attackedEnemy;
@@ -76,7 +82,7 @@ namespace OOPTextBasedRPG
             else if (map.GetPlayer().couldPickUp == false) 
             {
                 Console.WriteLine("Cannot Pick Up Item as Player Resource is Full               ");
-                await Task.Delay(timerDuration * 1000);
+                await Task.Delay(timerDuration * 1000); //milliseconds to seconds
                 if (lastItemPickedUp != null)
                 {
                     map.GetPlayer().couldPickUp = true;

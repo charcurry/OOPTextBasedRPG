@@ -7,20 +7,12 @@ using System.IO;
 using System.Diagnostics;
 using static System.Net.WebRequestMethods;
 using File = System.IO.File;
+using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
     internal class Map
     {
-        #region Wall & Door Tile Char
-        public char wallTile = '#';
-        public char doorTile = 'E';
-        public char airTile = ' ';
-        #endregion
-
-        #region Border Offset
-        public int borderOffset = 1;
-        #endregion
 
         #region Map File
         static string path = @"map.txt";
@@ -150,7 +142,6 @@ namespace OOPTextBasedRPG
         {
             Console.SetCursorPosition(0, 0);
 
-
             Console.Write('┌');
             for (int i = 0; i < mapXLength; i++)
             {
@@ -182,35 +173,29 @@ namespace OOPTextBasedRPG
 
         public void WriteTile(char tile)
         {
-            if (tile == '^')
+            if (tile == '#')
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write('▲');
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = wallTileColor;
+                Console.Write(wallTile);
+                Console.ForegroundColor = defaultConsoleColor;
             }
-            else if (tile == '*')
+            else if (tile == 'E')
             {
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.Write('♣');
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = doorTileColor;
+                Console.Write(doorTile);
+                Console.ForegroundColor = defaultConsoleColor;
             }
             else if (tile == ' ')
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write(' ');
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = airTileColor;
+                Console.Write(airTile);
+                Console.ForegroundColor = defaultConsoleColor;
             }
             else if (tile == '~')
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write('»');
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-            else if (tile == 'A')
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write('⌂');
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = waterTileColor;
+                Console.Write(waterTile);
+                Console.ForegroundColor = defaultConsoleColor;
             }
             else
             {

@@ -8,10 +8,12 @@ namespace OOPTextBasedRPG
 {
     public static class Settings
     {
+        public const ConsoleColor defaultConsoleColor = ConsoleColor.White;
+
         #region Player Settings
-        public const int playerHealth = 20;
+        public const int playerHealth = 10;
         public const int playerMaxHealth = 20;
-        public const int playerShield = 20;
+        public const int playerShield = 10;
         public const int playerMaxShield = 20;
         public const int playerSpeed = 1;
         public const int playerDamage = 3;
@@ -22,10 +24,10 @@ namespace OOPTextBasedRPG
         #region Enemy Settings
 
             #region Slime Settings
-            public const int slimeHealth = 7;
-            public const int slimeMaxHealth = 7;
-            public const int slimeShield = 7;
-            public const int slimeMaxShield = 7;
+            public const int slimeHealth = 5;
+            public const int slimeMaxHealth = 5;
+            public const int slimeShield = 5;
+            public const int slimeMaxShield = 5;
             public const int slimeSpeed = 1;
             public const int slimeDamage = 2;
             public const ConsoleColor slimeColor = ConsoleColor.DarkGreen;
@@ -74,8 +76,25 @@ namespace OOPTextBasedRPG
             #region Key Item Settings
             public const ConsoleColor keyItemColor = ConsoleColor.DarkGray;
             public const string keyItemIcon = "F";
-            #endregion
+        #endregion
 
+        #endregion
+
+        #region HUD Settings
+        public const int HUDTimerDuration = 3;
+        #endregion
+
+        #region Map Settings
+        public const ConsoleColor airTileColor = ConsoleColor.White;
+        public const ConsoleColor wallTileColor = ConsoleColor.White;
+        public const ConsoleColor doorTileColor = ConsoleColor.DarkGray;
+        public const ConsoleColor waterTileColor = ConsoleColor.DarkBlue;
+        public const char airTile = ' ';
+        public const char wallTile = '#';
+        public const char doorTile = 'E';
+        public const char waterTile = '~';
+        public const int borderOffset = 1;
+        public const int movesToGetThroughWater = 1;
         #endregion
     }
 }

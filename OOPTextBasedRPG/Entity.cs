@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
@@ -24,6 +25,8 @@ namespace OOPTextBasedRPG
         public int moveSpeed;
 
         public bool couldPickUp = true;
+
+        public int movesLeftToGetThroughWater = movesToGetThroughWater;
         #endregion
 
         public void Move(Map map, Point2D startPos, Point2D endPos)
@@ -44,7 +47,7 @@ namespace OOPTextBasedRPG
                     int error = deltaX / 2;
                     for (int i = 0; i < deltaX; i++)
                     {
-                        if (map.GetTile(new Point2D(x, y)) == map.wallTile)
+                        if (map.GetTile(new Point2D(x, y)) == wallTile)
                         {
                             return;
                         }
@@ -62,7 +65,7 @@ namespace OOPTextBasedRPG
                     int error = deltaY / 2;
                     for (int i = 0; i < deltaY; i++)
                     {
-                        if (map.GetTile(new Point2D(x, y)) == map.wallTile)
+                        if (map.GetTile(new Point2D(x, y)) == wallTile)
                         {
                             return;
                         }
@@ -77,19 +80,31 @@ namespace OOPTextBasedRPG
                 }
             }
 
-            if (endPos.y < 0 + map.borderOffset || endPos.x < 0 + map.borderOffset || endPos.y >= map.mapYLength + map.borderOffset || endPos.x >= map.mapXLength + map.borderOffset)
+            if (map.GetTile(startPos) == waterTile)
+            {
+                if (movesLeftToGetThroughWater > 0)
+                {
+                    movesLeftToGetThroughWater--;
+                    return;
+                }
+                else
+                {
+                    movesLeftToGetThroughWater = movesToGetThroughWater;
+                }
+            }
+            if (endPos.y < 0 + borderOffset || endPos.x < 0 + borderOffset || endPos.y >= map.mapYLength + borderOffset || endPos.x >= map.mapXLength + borderOffset)
             {
                 return;
             }
-            else if (map.GetTile(endPos) == map.wallTile)
+            else if (map.GetTile(endPos) == wallTile)
             {
                 return;
             }
-            else if (this == map.GetPlayer() && map.GetTile(endPos) == map.doorTile)
+            else if (this == map.GetPlayer() && map.GetTile(endPos) == doorTile)
             {
                 if (map.GetPlayer().numKeys > 0)
                 {
-                    map.SetTile(endPos, map.airTile);
+                    map.SetTile(endPos, airTile);
                     map.GetPlayer().numKeys--;
                 }
             }
