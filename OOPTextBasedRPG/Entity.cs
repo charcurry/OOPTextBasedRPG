@@ -41,17 +41,20 @@ namespace OOPTextBasedRPG
 
                 int x = startPos.x;
                 int y = startPos.y;
-
+                //checks tiles along x-axis
                 if (deltaX >= deltaY)
                 {
                     int error = deltaX / 2;
+                    //checks each tile along axis
                     for (int i = 0; i < deltaX; i++)
                     {
+                        //checks for wall
                         if (map.GetTile(new Point2D(x, y)) == wallTile)
                         {
                             return;
                         }
                         error -= deltaY;
+                        //moves normally
                         if (error < 0)
                         {
                             y += stepY;
@@ -60,16 +63,20 @@ namespace OOPTextBasedRPG
                         x += stepX;
                     }
                 }
+                //checks tiles along y-axis
                 else
                 {
                     int error = deltaY / 2;
+                    //checks each tile along axis
                     for (int i = 0; i < deltaY; i++)
                     {
+                        //checks for wall
                         if (map.GetTile(new Point2D(x, y)) == wallTile)
                         {
                             return;
                         }
                         error -= deltaX;
+                        //moves normally
                         if (error < 0)
                         {
                             x += stepX;
@@ -79,8 +86,8 @@ namespace OOPTextBasedRPG
                     }
                 }
             }
-
-            if (map.GetTile(startPos) == waterTile)
+            //dealing with water tiles
+            if (map.GetTile(startPos) == waterTile && (this == map.GetPlayer() || this == (Slime)map.GetEnemy()))
             {
                 if (movesLeftToGetThroughWater > 0)
                 {
@@ -92,14 +99,17 @@ namespace OOPTextBasedRPG
                     movesLeftToGetThroughWater = movesToGetThroughWater;
                 }
             }
+            //dealing with the edge of the world
             if (endPos.y < 0 + borderOffset || endPos.x < 0 + borderOffset || endPos.y >= map.mapYLength + borderOffset || endPos.x >= map.mapXLength + borderOffset)
             {
                 return;
             }
+            //dealing with wall tiles
             else if (map.GetTile(endPos) == wallTile)
             {
                 return;
             }
+            // dealing with doors
             else if (this == map.GetPlayer() && map.GetTile(endPos) == doorTile)
             {
                 if (map.GetPlayer().numKeys > 0)
@@ -108,6 +118,7 @@ namespace OOPTextBasedRPG
                     map.GetPlayer().numKeys--;
                 }
             }
+            // dealing with attacking other entities
             else if (map.GetEntity(endPos) != null)
             {
                 Attack(map.GetEntity(endPos));
@@ -116,6 +127,7 @@ namespace OOPTextBasedRPG
                     map.RemoveEntity(endPos);
                 }
             }
+            //dealing with picking up items
             else if (map.GetItem(endPos) != null && this == map.GetPlayer())
             {
                 map.GetItem(endPos).PickupItem();
@@ -132,6 +144,7 @@ namespace OOPTextBasedRPG
                     couldPickUp = false;
                 }
             }
+            // dealing with moving normally
             else
             {
                 map.AddEntity(map.GetEntity(startPos), endPos);
