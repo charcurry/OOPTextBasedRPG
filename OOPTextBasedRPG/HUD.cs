@@ -79,7 +79,7 @@ namespace OOPTextBasedRPG
             {
                 Console.WriteLine("Last Item Picked Up: " + lastItemPickedUp.GetType().Name + "                   ");
             }
-            else if (map.GetPlayer().couldPickUp == false) 
+            else if (map.GetPlayer() != null && map.GetPlayer().couldPickUp == false) 
             {
                 Console.WriteLine("Cannot Pick Up Item as Player Resource is Full               ");
                 await Task.Delay(timerDuration * 1000); //milliseconds to seconds
