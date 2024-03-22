@@ -10,15 +10,11 @@ namespace OOPTextBasedRPG
     {
         public bool isPickedUp = false;
         public readonly Map map;
-        public readonly ConsoleColor color;
-        public readonly string icon;
 
-        public Item(Point2D position, Map map, ConsoleColor color, string icon)
+        public Item(Point2D position, Map map)
         {
             this.map = map;
             this.position = new Point2D(position.x, position.y);
-            this.color = color;
-            this.icon = icon;
         }
 
         public void ItemDraw()

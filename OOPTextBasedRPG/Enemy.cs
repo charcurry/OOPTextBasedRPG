@@ -9,8 +9,6 @@ namespace OOPTextBasedRPG
 {
     internal abstract class Enemy : Entity
     {
-        public ConsoleColor color;
-        public string icon;
         public readonly Map map;
 
         #region Constructor

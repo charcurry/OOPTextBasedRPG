@@ -109,6 +109,8 @@ namespace OOPTextBasedRPG
             healthSystem.maxHealth = playerMaxHealth;
             healthSystem.shield = playerShield;
             healthSystem.maxHealth = playerMaxShield;
+            icon = playerIcon;
+            color = playerColor;
             Debug.WriteLine("Player Class Constructed");
         }
         #endregion

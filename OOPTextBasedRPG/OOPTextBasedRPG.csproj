@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Enemy.cs" />
+    <Compile Include="EnemyManager.cs" />
+    <Compile Include="ItemManager.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Slime.cs" />
     <Compile Include="Bat.cs" />

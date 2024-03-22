@@ -9,45 +9,71 @@ namespace OOPTextBasedRPG
     public static class Settings
     {
         #region Player Settings
-        public static int playerHealth = 10;
-        public static int playerMaxHealth = 10;
-        public static int playerShield = 10;
-        public static int playerMaxShield = 10;
-        public static int playerSpeed = 1;
-        public static int playerDamage = 3;
+        public const int playerHealth = 10;
+        public const int playerMaxHealth = 20;
+        public const int playerShield = 10;
+        public const int playerMaxShield = 20;
+        public const int playerSpeed = 1;
+        public const int playerDamage = 3;
+        public const ConsoleColor playerColor = ConsoleColor.Magenta;
+        public const string playerIcon = "@";
         #endregion
 
-        #region Slime Variables
-        public static int slimeHealth = 10;
-        public static int slimeMaxHealth = 10;
-        public static int slimeShield = 10;
-        public static int slimeMaxShield = 10;
-        public static int slimeSpeed = 1;
-        public static int slimeDamage = 2;
-        public static ConsoleColor slimeColor = ConsoleColor.DarkGreen;
-        public static string slimeIcon = "O";
+        #region Enemy Settings
+
+          #region Slime Settings
+          public const int slimeHealth = 10;
+          public const int slimeMaxHealth = 10;
+          public const int slimeShield = 10;
+          public const int slimeMaxShield = 10;
+          public const int slimeSpeed = 1;
+          public const int slimeDamage = 2;
+          public const ConsoleColor slimeColor = ConsoleColor.DarkGreen;
+          public const string slimeIcon = "O";
+          #endregion
+
+          #region Bat Settings
+          public const int batHealth = 5;
+          public const int batMaxHealth = 5;
+          public const int batShield = 3;
+          public const int batMaxShield = 3;
+          public const int batSpeed = 1;
+          public const int batDamage = 1;
+          public const ConsoleColor batColor = ConsoleColor.DarkBlue;
+          public const string batIcon = "W";
+          #endregion
+
+          #region Lightning Spirit Settings
+          public const int lightningSpiritHealth = 1;
+          public const int lightningSpiritMaxHealth = 1;
+          public const int lightningSpiritShield = 5;
+          public const int lightningSpiritMaxShield = 5;
+          public const int lightningSpiritSpeed = 2;
+          public const int lightningSpiritDamage = 1;
+          public const ConsoleColor lightningSpiritColor = ConsoleColor.Yellow;
+          public const string lightningSpiritIcon = "Y";
         #endregion
 
-        #region Bat Variables
-        public static int batHealth = 5;
-        public static int batMaxHealth = 5;
-        public static int batShield = 3;
-        public static int batMaxShield = 3;
-        public static int batSpeed = 1;
-        public static int batDamage = 1;
-        public static ConsoleColor batColor = ConsoleColor.DarkBlue;
-        public static string batIcon = "W";
         #endregion
 
-        #region Lightning Spirit
-        public static int lightningSpiritHealth = 1;
-        public static int lightningSpiritMaxHealth = 1;
-        public static int lightningSpiritShield = 5;
-        public static int lightningSpiritMaxShield = 5;
-        public static int lightningSpiritSpeed = 2;
-        public static int lightningSpiritDamage = 1;
-        public static ConsoleColor lightningSpiritColor = ConsoleColor.Yellow;
-        public static string lightningSpiritIcon = "Y";
+        #region Item Settings
+        #region Health Item Settings
+        public const ConsoleColor healthItemColor = ConsoleColor.Red;
+        public const string healthItemIcon = "H";
+        public const int healthItemHealingValue = 5;
+        #endregion
+
+        #region Shield Item Settings
+        public const ConsoleColor shieldItemColor = ConsoleColor.Cyan;
+        public const string shieldItemIcon = "S";
+        public const int shieldItemHealingValue = 5;
+        #endregion
+
+        #region Key Item Settings
+        public const ConsoleColor keyItemColor = ConsoleColor.DarkGray;
+        public const string keyItemIcon = "F";
+        #endregion
+
         #endregion
     }
 }

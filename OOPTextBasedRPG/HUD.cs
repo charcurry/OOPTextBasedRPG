@@ -58,6 +58,10 @@ namespace OOPTextBasedRPG
             {
                 Console.WriteLine("Last Enemy Health: " + attacker.healthSystem.health + "  " + "Last Enemy Shield: " + attacker.healthSystem.shield + "  ");
             }
+            if (attacker == null && lastEnemyAttacked == null)
+            {
+                Console.WriteLine();
+            }
             Console.WriteLine();
             if (map.GetPlayer() != null)
             {

@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
     internal class ShieldItem : Item
     {
-        public ShieldItem(Point2D position, Map map, ConsoleColor color, string icon) : base (position, map, color, icon)
-        {
+        public int healingValue;
 
+        public ShieldItem(Point2D position, Map map) : base (position, map)
+        {
+            icon = shieldItemIcon;
+            color = shieldItemColor;
+            healingValue = shieldItemHealingValue;
         }
 
         public override void PickupItem()

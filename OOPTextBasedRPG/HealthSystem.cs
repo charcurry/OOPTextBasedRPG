@@ -64,7 +64,7 @@ namespace OOPTextBasedRPG
             {
                 Console.WriteLine("Error: Entity Cannot Heal " + hp + " HP");
             }
-            else if (health + hp > 20)
+            else if (health + hp > maxHealth)
             {
                 health = maxHealth;
             }
@@ -80,7 +80,7 @@ namespace OOPTextBasedRPG
             {
                 Console.WriteLine("Error: Player Cannot Regenerate " + hp + " Shield");
             }
-            else if (shield + hp > 20)
+            else if (shield + hp > maxShield)
             {
                 shield = maxShield;
             }

@@ -12,7 +12,6 @@ namespace OOPTextBasedRPG
         static void Main(string[] args)
         {
             GameManager gameManager = new GameManager();
-            gameManager.InitGame();
             gameManager.RunGameLoop();
         }
     }

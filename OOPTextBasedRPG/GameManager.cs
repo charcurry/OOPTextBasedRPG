@@ -1,144 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OOPTextBasedRPG
 {
     internal class GameManager
     {
-        #region Variables
         private readonly Map map;
         private readonly HUD hud;
-        private readonly List<Enemy> enemies;
         private readonly Player player;
-        private readonly List<Item> items;
-        #endregion
+        private readonly EnemyManager enemyManager;
+        private readonly ItemManager itemManager;
 
-        #region Constructor
         public GameManager()
         {
             map = new Map();
             hud = new HUD(map);
-            enemies = new List<Enemy>();
             player = new Player(map, new Point2D(3, 3));
-            items = new List<Item>();
+            enemyManager = new EnemyManager(map);
+            itemManager = new ItemManager();
         }
-        #endregion
 
-        public void InitGame()
+        public void Init()
         {
-            //Console.WindowHeight = 63;
-            //Console.WindowWidth = 240;
-            enemies.Add(new Slime(map, new Point2D(16, 9)));
-            enemies.Add(new Slime(map, new Point2D(16, 15)));
-            enemies.Add(new LightningSpirit(map, new Point2D(84, 12)));
-            enemies.Add(new LightningSpirit(map, new Point2D(11, 19)));
-            enemies.Add(new LightningSpirit(map, new Point2D(77, 28)));
-            enemies.Add(new Slime(map, new Point2D(89, 16)));
-            enemies.Add(new Bat(map, new Point2D(49, 8)));
-            enemies.Add(new Bat(map, new Point2D(62, 27)));
-            enemies.Add(new Bat(map, new Point2D(22, 28)));
-            enemies.Add(new Slime(map, new Point2D(58, 11)));
-            enemies.Add(new Slime(map, new Point2D(16, 30)));
-
-            items.Add(new HealthItem(new Point2D(20, 4), map, ConsoleColor.Red, "H"));
-            items.Add(new HealthItem(new Point2D(43, 13), map, ConsoleColor.Red, "H"));
-            items.Add(new HealthItem(new Point2D(63, 30), map, ConsoleColor.Red, "H"));
-            items.Add(new HealthItem(new Point2D(41, 27), map, ConsoleColor.Red, "H"));
-            items.Add(new HealthItem(new Point2D(28, 18), map, ConsoleColor.Red, "H"));
-            items.Add(new ShieldItem(new Point2D(10, 15), map, ConsoleColor.Cyan, "S"));
-            items.Add(new ShieldItem(new Point2D(8, 31), map, ConsoleColor.Cyan, "S"));
-            items.Add(new ShieldItem(new Point2D(66, 5), map, ConsoleColor.Cyan, "S"));
-            items.Add(new KeyItem(new Point2D(8, 19), map, ConsoleColor.DarkGray, "F"));
-            items.Add(new KeyItem(new Point2D(7, 13), map, ConsoleColor.DarkGray, "F"));
+            enemyManager.InitEnemies();
+            itemManager.InitItems(map);
 
             map.AddEntity(player, player.position);
-            foreach (var enemy in enemies)
-            {
-                map.AddEntity(enemy, enemy.position);
-            }
-            foreach (var item in items)
-            {
-                map.AddItem(item, item.position);
-            }
+            enemyManager.AddEnemies();
+            itemManager.AddItems(map);
+
             map.GetEntities();
             map.GetItems();
             Console.CursorVisible = false;
             map.RenderMap();
-            hud.ShowHUD(player, enemies.ToArray());
+            hud.ShowHUD(player, enemyManager.enemies.ToArray());
+        }
+
+        public void Update()
+        {
+            player.PlayerUpdate();
+            enemyManager.UpdateEnemies();
+            player.gaveDamage = false;
+            CheckGameOver();
+        }
+
+        public void Draw()
+        {
+            map.RenderMap();
+            hud.ShowHUD(player, enemyManager.enemies.ToArray());
+            itemManager.DrawItems();
+            enemyManager.DrawEnemies();
+            player.PlayerDraw();
         }
 
         public void RunGameLoop()
         {
+            Init();
+            Draw();
+
             while (!player.gameOver)
             {
-                player.PlayerDraw();
-                ItemsDraw();
-                EnemiesDraw();
-                player.PlayerUpdate();
-                EnemiesUpdate();
-                player.gaveDamage = false;
-                CheckGameOver();
-                map.RenderMap();
-                hud.ShowHUD(player, enemies.ToArray());
-                CheckForWinner();
+                Update();
+                Draw();
             }
-            Console.WriteLine();
+
+            RenderTextScreen(player.healthSystem.isDead ? "Game Over" : "Victory");
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey(true);
         }
-        private void RenderTextScreen(string displayText)
-        {
-            Console.Clear();
-            Console.WriteLine(displayText);
-        }
 
-        private void CheckForWinner()
+        private void CheckGameOver()
         {
-            if (enemies.All(e => e.healthSystem.isDead))
-            {
-                RenderTextScreen("Victory");
-            }
-            if (player.healthSystem.isDead)
-            {
-                RenderTextScreen("Game Over");
-            }
-        }
-
-        public void CheckGameOver()
-        {
-            if (player.healthSystem.isDead || enemies.All(e => e.healthSystem.isDead))
+            if (player.healthSystem.isDead || enemyManager.AllEnemiesDefeated())
             {
                 player.gameOver = true;
             }
         }
 
-        private void EnemiesDraw()
+        private void RenderTextScreen(string displayText)
         {
-            foreach (var enemy in enemies)
-            {
-                enemy.EnemyDraw();
-            }
+            Console.Clear();
+            Console.WriteLine(displayText);
         }
-
-        private void EnemiesUpdate()
-        {
-            foreach (var enemy in enemies)
-            {
-                enemy.EnemyUpdate();
-            }
-        }
-
-        private void ItemsDraw()
-        {
-            foreach (var item in items)
-            {
-                item.ItemDraw();
-            }
-        }
-
     }
 }

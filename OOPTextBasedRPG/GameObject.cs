@@ -9,5 +9,7 @@ namespace OOPTextBasedRPG
     public class GameObject
     {
         public Point2D position;
+        public ConsoleColor color;
+        public string icon;
     }
 }
