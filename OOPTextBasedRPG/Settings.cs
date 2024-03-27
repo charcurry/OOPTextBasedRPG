@@ -19,6 +19,15 @@ namespace OOPTextBasedRPG
         public const int playerDamage = 3;
         public const ConsoleColor playerColor = ConsoleColor.Magenta;
         public const string playerIcon = "@";
+        public const ConsoleKey upKey = ConsoleKey.W;
+        public const ConsoleKey downKey = ConsoleKey.S;
+        public const ConsoleKey leftKey = ConsoleKey.A;
+        public const ConsoleKey rightKey = ConsoleKey.D;
+        public const ConsoleKey altUpKey = ConsoleKey.UpArrow;
+        public const ConsoleKey altDownKey = ConsoleKey.DownArrow;
+        public const ConsoleKey altLeftKey = ConsoleKey.LeftArrow;
+        public const ConsoleKey altRightKey = ConsoleKey.RightArrow;
+        public const ConsoleKey quitKey = ConsoleKey.Escape;
         #endregion
 
         #region Enemy Settings

@@ -33,7 +33,7 @@ namespace OOPTextBasedRPG
             {
                 Console.SetCursorPosition(this.position.x, this.position.y);
                 Console.ForegroundColor = color;
-                Console.WriteLine("@");
+                Console.WriteLine(playerIcon);
                 Console.ForegroundColor = defaultConsoleColor;
             }
         }
@@ -44,7 +44,7 @@ namespace OOPTextBasedRPG
             {
                 while (Console.KeyAvailable) { Console.ReadKey(true); }
                 ConsoleKeyInfo input = Console.ReadKey(true);
-                if (input.Key == ConsoleKey.W)
+                if (input.Key == upKey || input.Key == altUpKey)
                 {
                     int newY = position.y - moveSpeed;
                     Point2D newPosition = new Point2D(position.x, newY);
@@ -56,7 +56,7 @@ namespace OOPTextBasedRPG
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
                     //}
                 }
-                else if (input.Key == ConsoleKey.A)
+                else if (input.Key == leftKey || input.Key == altLeftKey)
                 {
                     int newX = position.x - moveSpeed;
                     Point2D newPosition = new Point2D(newX, position.y);
@@ -68,7 +68,7 @@ namespace OOPTextBasedRPG
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
                     //}
                 }
-                else if (input.Key == ConsoleKey.D)
+                else if (input.Key == rightKey || input.Key == altRightKey)
                 {
                     int newX = position.x + moveSpeed;
                     Point2D newPosition = new Point2D(newX, position.y);
@@ -80,7 +80,7 @@ namespace OOPTextBasedRPG
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
                     //}
                 }
-                else if (input.Key == ConsoleKey.S)
+                else if (input.Key == downKey || input.Key == altDownKey)
                 {
                     int newY = position.y + moveSpeed;
                     Point2D newPosition = new Point2D(position.x, newY);
@@ -92,7 +92,7 @@ namespace OOPTextBasedRPG
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
                     //}
                 }
-                else if (input.Key == ConsoleKey.Escape)
+                else if (input.Key == quitKey)
                 {
                     gameOver = true;
                 }
