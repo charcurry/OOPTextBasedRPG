@@ -156,7 +156,7 @@ namespace OOPTextBasedRPG
                 for (int x = 0; x < mapRow.Length; x++)
                 {
                     char tile = mapRow[x];
-                    WriteTile(tile);
+                    WriteTile(tile, x, y);
 
                 }
                 Console.Write('│');
@@ -171,7 +171,7 @@ namespace OOPTextBasedRPG
             Console.WriteLine();
         }
 
-        public void WriteTile(char tile)
+        public void WriteTile(char tile, int x, int y)
         {
             if (tile == '#')
             {
@@ -196,6 +196,11 @@ namespace OOPTextBasedRPG
                 Console.ForegroundColor = waterTileColor;
                 Console.Write(waterTile);
                 Console.ForegroundColor = defaultConsoleColor;
+            }
+            else if (tile == 'O')
+            {
+                entities.Add(new Slime(this, new Point2D(x,y)));
+                Debug.Write("enemy made");
             }
             else
             {
