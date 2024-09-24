@@ -28,6 +28,7 @@ namespace OOPTextBasedRPG
         public const ConsoleKey altLeftKey = ConsoleKey.LeftArrow;
         public const ConsoleKey altRightKey = ConsoleKey.RightArrow;
         public const ConsoleKey quitKey = ConsoleKey.Escape;
+        public static Point2D spawnPoint = new Point2D(3, 3);
         #endregion
 
         #region Enemy Settings
@@ -91,6 +92,9 @@ namespace OOPTextBasedRPG
 
         #region HUD Settings
         public const int HUDTimerDuration = 3;
+        public const string continueText = "Press any key to continue...";
+        public const string gameOverText = "Game Over";
+        public const string victoryText = "Victory";
         #endregion
 
         #region Map Settings

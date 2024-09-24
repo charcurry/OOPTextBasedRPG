@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
@@ -16,7 +17,7 @@ namespace OOPTextBasedRPG
         {
             map = new Map();
             hud = new HUD(map);
-            player = new Player(map, new Point2D(3, 3));
+            player = new Player(map, spawnPoint);
             enemyManager = new EnemyManager(map);
             itemManager = new ItemManager(map);
         }
@@ -68,8 +69,8 @@ namespace OOPTextBasedRPG
                 Draw();
             }
 
-            RenderTextScreen(player.healthSystem.isDead ? "Game Over" : "Victory");
-            Console.WriteLine("Press any key to continue...");
+            RenderTextScreen(player.healthSystem.isDead ? gameOverText : victoryText);
+            Console.WriteLine(continueText);
             Console.ReadKey(true);
         }
 
