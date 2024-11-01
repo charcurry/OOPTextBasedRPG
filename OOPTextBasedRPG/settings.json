@@ -1,0 +1,95 @@
+{
+	"Player": {
+		"Health": 20,
+		"MaxHealth": 20,
+		"Shield": 10,
+		"MaxShield": 20,
+		"Speed": 1,
+		"Damage": 3,
+		"ColorName": "Magenta",
+		"Icon": "@",
+		"DefaultConsoleColorName": "White",
+        "SpawnPoint": {
+            "x": 3,
+            "y": 3
+        },
+		"Controls": {
+			"UpKeyName": "W",
+			"DownKeyName": "S",
+			"LeftKeyName": "A",
+			"RightKeyName": "D",
+			"AltUpKeyName": "UpArrow",
+			"AltDownKeyName": "DownArrow",
+			"AltLeftKeyName": "LeftArrow",
+			"AltRightKeyName": "RightArrow",
+			"QuitKeyName": "Escape"
+		}
+	},
+	"Enemies": {
+        "Slime": {
+            "Health": 5,
+            "MaxHealth": 5,
+            "Shield": 5,
+            "MaxShield": 5,
+            "Speed": 1,
+            "Damage": 2,
+            "ColorName": "DarkGreen",
+            "Icon": "O",
+            "MaxDetectionRadius": 5
+        },
+        "Bat": {
+            "Health": 5,
+            "MaxHealth": 5,
+            "Shield": 3,
+            "MaxShield": 3,
+            "Speed": 1,
+            "Damage": 1,
+            "ColorName": "DarkBlue",
+            "Icon": "W"
+        },
+        "LightningSpirit": {
+            "Health": 1,
+            "MaxHealth": 1,
+            "Shield": 5,
+            "MaxShield": 5,
+            "Speed": 2,
+            "Damage": 1,
+            "ColorName": "Yellow",
+            "Icon": "Y"
+        }
+    },
+    "Map": {
+        "BorderOffset": 1,
+        "AirTile": " ",
+        "WallTile": "#",
+        "DoorTile": "E",
+        "WaterTile": "~",
+        "AirTileColorName": "White",
+        "WallTileColorName": "White",
+        "DoorTileColorName": "DarkGray",
+        "WaterTileColorName": "DarkBlue",
+        "MovesToGetThroughWater": 1
+    },
+    "HUD": {
+        "TimerDuration": 3,
+        "ContinueText": "Press any key to continue...",
+        "GameOverText": "Game Over",
+        "VictoryText": "Victory"
+    },
+    "Items": {
+        "HealthItem": {
+            "ColorName": "Red",
+            "Icon": "H",
+            "HealingValue": 5
+        },
+        "ShieldItem": {
+            "ColorName": "Cyan",
+            "Icon": "S",
+            "HealingValue": 5
+        },
+        "KeyItem": {
+            "ColorName": "DarkGray",
+            "Icon": "F"
+        }
+    }
+}

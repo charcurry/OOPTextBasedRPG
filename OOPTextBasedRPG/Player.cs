@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static OOPTextBasedRPG.Settings;
 
 
 namespace OOPTextBasedRPG
@@ -22,7 +21,7 @@ namespace OOPTextBasedRPG
         #endregion
 
         #region Classes
-        readonly Map map;
+        //readonly Map map;
         #endregion
 
         public int numKeys;
@@ -33,8 +32,8 @@ namespace OOPTextBasedRPG
             {
                 Console.SetCursorPosition(this.position.x, this.position.y);
                 Console.ForegroundColor = color;
-                Console.WriteLine(playerIcon);
-                Console.ForegroundColor = defaultConsoleColor;
+                Console.WriteLine(icon);
+                Console.ForegroundColor = playerSettings.DefaultConsoleColor;
             }
         }
 
@@ -44,7 +43,7 @@ namespace OOPTextBasedRPG
             {
                 while (Console.KeyAvailable) { Console.ReadKey(true); }
                 ConsoleKeyInfo input = Console.ReadKey(true);
-                if (input.Key == upKey || input.Key == altUpKey)
+                if (input.Key == playerSettings.Controls.UpKey || input.Key == playerSettings.Controls.AltUpKey)
                 {
                     int newY = position.y - moveSpeed;
                     Point2D newPosition = new Point2D(position.x, newY);
@@ -56,7 +55,7 @@ namespace OOPTextBasedRPG
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
                     //}
                 }
-                else if (input.Key == leftKey || input.Key == altLeftKey)
+                else if (input.Key == playerSettings.Controls.LeftKey || input.Key == playerSettings.Controls.AltLeftKey)
                 {
                     int newX = position.x - moveSpeed;
                     Point2D newPosition = new Point2D(newX, position.y);
@@ -68,7 +67,7 @@ namespace OOPTextBasedRPG
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
                     //}
                 }
-                else if (input.Key == rightKey || input.Key == altRightKey)
+                else if (input.Key == playerSettings.Controls.RightKey || input.Key == playerSettings.Controls.AltRightKey)
                 {
                     int newX = position.x + moveSpeed;
                     Point2D newPosition = new Point2D(newX, position.y);
@@ -80,7 +79,7 @@ namespace OOPTextBasedRPG
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
                     //}
                 }
-                else if (input.Key == downKey || input.Key == altDownKey)
+                else if (input.Key == playerSettings.Controls.DownKey || input.Key == playerSettings.Controls.AltDownKey)
                 {
                     int newY = position.y + moveSpeed;
                     Point2D newPosition = new Point2D(position.x, newY);
@@ -92,7 +91,7 @@ namespace OOPTextBasedRPG
                     //    enemy.Move(map, enemy.position, newEnemyPosition);
                     //}
                 }
-                else if (input.Key == quitKey)
+                else if (input.Key == playerSettings.Controls.QuitKey)
                 {
                     gameOver = true;
                 }
@@ -101,17 +100,20 @@ namespace OOPTextBasedRPG
 
 
         #region Constructor
-        public Player(Map map, Point2D position) : base(position)
+
+        private readonly PlayerSettings playerSettings;
+        public Player(Map map, Point2D position, PlayerSettings playerSettings) : base(position, map)
         {
+            this.playerSettings = playerSettings;
             this.map = map;
-            attackDamage = playerDamage;
-            moveSpeed = playerSpeed;
-            healthSystem.health = playerHealth;
-            healthSystem.maxHealth = playerMaxHealth;
-            healthSystem.shield = playerShield;
-            healthSystem.maxShield = playerMaxShield;
-            icon = playerIcon;
-            color = playerColor;
+            attackDamage = playerSettings.Damage;
+            moveSpeed = playerSettings.Speed;
+            healthSystem.health = playerSettings.Health;
+            healthSystem.maxHealth = playerSettings.MaxHealth;
+            healthSystem.shield = playerSettings.Shield;
+            healthSystem.maxShield = playerSettings.MaxShield;
+            icon = playerSettings.Icon;
+            color = playerSettings.Color;
             Debug.WriteLine("Player Class Constructed");
         }
         #endregion

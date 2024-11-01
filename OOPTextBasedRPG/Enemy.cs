@@ -4,16 +4,15 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
     internal abstract class Enemy : Entity
     {
-        public readonly Map map;
+        //public readonly Map map;
 
         #region Constructor
-        public Enemy(Map map, Point2D position) : base(position)
+        public Enemy(Map map, Point2D position) : base(position, map)
         {
             this.map = map;
             Debug.WriteLine("Enemy Class Constructed");
@@ -27,7 +26,7 @@ namespace OOPTextBasedRPG
                 Console.SetCursorPosition(this.position.x, this.position.y);
                 Console.ForegroundColor = color;
                 Console.WriteLine(icon);
-                Console.ForegroundColor = defaultConsoleColor;
+                //Console.ForegroundColor = defaultConsoleColor;
             }
         }
 

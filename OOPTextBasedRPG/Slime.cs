@@ -12,17 +12,19 @@ namespace OOPTextBasedRPG
 
         int distanceX;
         int distanceY;
+        private readonly SlimeSettings slimeSettings;
 
-        public Slime(Map map, Point2D position) : base(map, position)
+        public Slime(Map map, Point2D position, SlimeSettings slimeSettings) : base(map, position)
         {
-            attackDamage = slimeDamage;
-            moveSpeed = slimeSpeed;
-            healthSystem.health = slimeHealth;
-            healthSystem.maxHealth = slimeMaxHealth;
-            healthSystem.shield = slimeShield;
-            healthSystem.maxHealth = slimeMaxShield;
-            icon = slimeIcon;
-            color = slimeColor;
+            this.slimeSettings = slimeSettings;
+            attackDamage = slimeSettings.Damage;
+            moveSpeed = slimeSettings.Speed;
+            healthSystem.health = slimeSettings.Health;
+            healthSystem.maxHealth = slimeSettings.MaxHealth;
+            healthSystem.shield = slimeSettings.Shield;
+            healthSystem.maxHealth = slimeSettings.MaxShield;
+            icon = slimeSettings.Icon;
+            color = slimeSettings.Color;
         }
 
         public override void EnemyUpdate()
@@ -35,7 +37,7 @@ namespace OOPTextBasedRPG
                     distanceY = Math.Abs(position.y - map.GetPlayer().position.y);
                 }
 
-                if (distanceX <= slimeMaxDetectionRadius && distanceY <= slimeMaxDetectionRadius) 
+                if (distanceX <= slimeSettings.MaxDetectionRadius && distanceY <= slimeSettings.MaxDetectionRadius) 
                 {
                     Random random = new Random();
                     int direction = random.Next(0, 4);

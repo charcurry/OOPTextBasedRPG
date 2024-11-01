@@ -6,108 +6,157 @@ using System.Threading.Tasks;
 
 namespace OOPTextBasedRPG
 {
-    public static class Settings
+
+    public class Settings
     {
-        public const ConsoleColor defaultConsoleColor = ConsoleColor.White;
+        public PlayerSettings Player { get; set; }
+        public EnemySettings Enemies { get; set; }
+        public ItemSettings Items { get; set; }
+        public MapSettings Map { get; set; }
+        public HUDSettings HUD { get; set; }
+    }
 
-        #region Player Settings
-        public const int playerHealth = 10;
-        public const int playerMaxHealth = 20;
-        public const int playerShield = 10;
-        public const int playerMaxShield = 20;
-        public const int playerSpeed = 1;
-        public const int playerDamage = 3;
-        public const ConsoleColor playerColor = ConsoleColor.Magenta;
-        public const string playerIcon = "@";
-        public const ConsoleKey upKey = ConsoleKey.W;
-        public const ConsoleKey downKey = ConsoleKey.S;
-        public const ConsoleKey leftKey = ConsoleKey.A;
-        public const ConsoleKey rightKey = ConsoleKey.D;
-        public const ConsoleKey altUpKey = ConsoleKey.UpArrow;
-        public const ConsoleKey altDownKey = ConsoleKey.DownArrow;
-        public const ConsoleKey altLeftKey = ConsoleKey.LeftArrow;
-        public const ConsoleKey altRightKey = ConsoleKey.RightArrow;
-        public const ConsoleKey quitKey = ConsoleKey.Escape;
-        public static Point2D spawnPoint = new Point2D(3, 3);
-        #endregion
+    public class PlayerSettings
+    {
+        public ConsoleColor DefaultConsoleColor { get; set; }
+        public string DefaultConsoleColorName { get; set; }
+        public int Health { get; set; }
+        public int MaxHealth { get; set; }
+        public int Shield { get; set; }
+        public int MaxShield { get; set; }
+        public int Speed { get; set; }
+        public int Damage { get; set; }
+        public ConsoleColor Color { get; set; }
+        public string ColorName { get; set; }
+        public string Icon { get; set; }
 
-        #region Enemy Settings
+        public Point2D SpawnPoint { get; set; }// = new Point2D(3, 3);
 
-            #region Slime Settings
-            public const int slimeHealth = 5;
-            public const int slimeMaxHealth = 5;
-            public const int slimeShield = 5;
-            public const int slimeMaxShield = 5;
-            public const int slimeSpeed = 1;
-            public const int slimeDamage = 2;
-            public const ConsoleColor slimeColor = ConsoleColor.DarkGreen;
-            public const string slimeIcon = "O";
-            public const int slimeMaxDetectionRadius = 5;
-            #endregion
+        public ControlsSettings Controls { get; set; }
+    }
 
-            #region Bat Settings
-            public const int batHealth = 5;
-            public const int batMaxHealth = 5;
-            public const int batShield = 3;
-            public const int batMaxShield = 3;
-            public const int batSpeed = 1;
-            public const int batDamage = 1;
-            public const ConsoleColor batColor = ConsoleColor.DarkBlue;
-            public const string batIcon = "W";
-            #endregion
+    public class ControlsSettings
+    {
+        public ConsoleKey UpKey { get; set; }
+        public ConsoleKey DownKey { get; set; }
+        public ConsoleKey LeftKey { get; set; }
+        public ConsoleKey RightKey { get; set; }
+        public ConsoleKey AltUpKey { get; set; }
+        public ConsoleKey AltDownKey { get; set; }
+        public ConsoleKey AltLeftKey { get; set; }
+        public ConsoleKey AltRightKey { get; set; }
+        public ConsoleKey QuitKey { get; set; }
+        public string UpKeyName { get; set; }
+        public string DownKeyName { get; set; }
+        public string LeftKeyName { get; set; }
+        public string RightKeyName { get; set; }
+        public string AltUpKeyName { get; set; }
+        public string AltDownKeyName { get; set; }
+        public string AltLeftKeyName { get; set; }
+        public string AltRightKeyName { get; set; }
+        public string QuitKeyName { get; set; }
+    }
 
-            #region Lightning Spirit Settings
-            public const int lightningSpiritHealth = 1;
-            public const int lightningSpiritMaxHealth = 1;
-            public const int lightningSpiritShield = 5;
-            public const int lightningSpiritMaxShield = 5;
-            public const int lightningSpiritSpeed = 2;
-            public const int lightningSpiritDamage = 1;
-            public const ConsoleColor lightningSpiritColor = ConsoleColor.Yellow;
-            public const string lightningSpiritIcon = "Y";
-            #endregion
+    public class EnemySettings
+    {
+        public SlimeSettings Slime { get; set; }
+        public BatSettings Bat { get; set; }
+        public LightningSpiritSettings LightningSpirit { get; set; }
+    }
 
-        #endregion
+    public class SlimeSettings
+    {
+        public int Health { get; set; }
+        public int MaxHealth { get; set; }
+        public int Shield { get; set; }
+        public int MaxShield { get; set; }
+        public int Speed { get; set; }
+        public int Damage { get; set; }
+        public ConsoleColor Color { get; set; }
+        public string ColorName { get; set; }
+        public string Icon { get; set; }
+        public int MaxDetectionRadius { get; set; }
+    }
 
-        #region Item Settings
+    public class BatSettings
+    {
+        public int Health { get; set; }
+        public int MaxHealth { get; set; }
+        public int Shield { get; set; }
+        public int MaxShield { get; set; }
+        public int Speed { get; set; }
+        public int Damage { get; set; }
+        public ConsoleColor Color { get; set; }
+        public string ColorName { get; set; }
+        public string Icon { get; set; }
+    }
 
-            #region Health Item Settings
-            public const ConsoleColor healthItemColor = ConsoleColor.Red;
-            public const string healthItemIcon = "H";
-            public const int healthItemHealingValue = 5;
-            #endregion
+    public class LightningSpiritSettings
+    {
+        public int Health { get; set; }
+        public int MaxHealth { get; set; }
+        public int Shield { get; set; }
+        public int MaxShield { get; set; }
+        public int Speed { get; set; }
+        public int Damage { get; set; }
+        public ConsoleColor Color { get; set; }
+        public string ColorName { get; set; }
+        public string Icon { get; set; }
+    }
 
-            #region Shield Item Settings
-            public const ConsoleColor shieldItemColor = ConsoleColor.Cyan;
-            public const string shieldItemIcon = "S";
-            public const int shieldItemHealingValue = 5;
-            #endregion
+    public class ItemSettings
+    {
+        public HealthItemSettings HealthItem { get; set; }
+        public ShieldItemSettings ShieldItem { get; set; }
+        public KeyItemSettings KeyItem { get; set; }
+    }
 
-            #region Key Item Settings
-            public const ConsoleColor keyItemColor = ConsoleColor.DarkGray;
-            public const string keyItemIcon = "F";
-        #endregion
+    public class HealthItemSettings
+    {
+        public ConsoleColor Color { get; set; }
+        public string ColorName { get; set; }
+        public string Icon { get; set; }
+        public int HealingValue { get; set; }
+    }
 
-        #endregion
+    public class ShieldItemSettings
+    {
+        public ConsoleColor Color { get; set; }
+        public string ColorName { get; set; }
+        public string Icon { get; set; }
+        public int HealingValue { get; set; }
+    }
+    public class KeyItemSettings
+    {
+        public ConsoleColor Color { get; set; }
+        public string ColorName { get; set; }
+        public string Icon { get; set; }
+    }
 
-        #region HUD Settings
-        public const int HUDTimerDuration = 3;
-        public const string continueText = "Press any key to continue...";
-        public const string gameOverText = "Game Over";
-        public const string victoryText = "Victory";
-        #endregion
 
-        #region Map Settings
-        public const ConsoleColor airTileColor = ConsoleColor.White;
-        public const ConsoleColor wallTileColor = ConsoleColor.White;
-        public const ConsoleColor doorTileColor = ConsoleColor.DarkGray;
-        public const ConsoleColor waterTileColor = ConsoleColor.DarkBlue;
-        public const char airTile = ' ';
-        public const char wallTile = '#';
-        public const char doorTile = 'E';
-        public const char waterTile = '~';
-        public const int borderOffset = 1;
-        public const int movesToGetThroughWater = 1;
-        #endregion
+    public class HUDSettings
+    {
+        public int TimerDuration { get; set; }
+        public string ContinueText { get; set; }
+        public string GameOverText { get; set; }
+        public string VictoryText { get; set; }
+    }
+
+    public class MapSettings
+    {
+        public ConsoleColor AirTileColor { get; set; }
+        public string AirTileColorName { get; set; }
+        public ConsoleColor WallTileColor { get; set; }
+        public string WallTileColorName { get; set; }
+        public ConsoleColor DoorTileColor { get; set; }
+        public string DoorTileColorName { get; set; }
+        public ConsoleColor WaterTileColor { get; set; }
+        public string WaterTileColorName { get; set; }
+        public char AirTile { get; set; }
+        public char WallTile { get; set; }
+        public char DoorTile { get; set; }
+        public char WaterTile { get; set; }
+        public int BorderOffset { get; set; }
+        public int MovesToGetThroughWater { get; set; }
     }
 }

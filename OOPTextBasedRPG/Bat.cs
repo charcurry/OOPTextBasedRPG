@@ -9,16 +9,16 @@ namespace OOPTextBasedRPG
 {
     internal class Bat : Enemy
     {
-        public Bat(Map map, Point2D position) : base(map, position)
+        public Bat(Map map, Point2D position, BatSettings batSettings) : base(map, position)
         {
-            attackDamage = batDamage;
-            moveSpeed = batSpeed;
-            healthSystem.health = batHealth;
-            healthSystem.maxHealth = batMaxHealth;
-            healthSystem.shield = batShield;
-            healthSystem.maxHealth = batMaxShield;
-            icon = batIcon;
-            color = batColor;
+            attackDamage = batSettings.Damage;
+            moveSpeed = batSettings.Speed;
+            healthSystem.health = batSettings.Health;
+            healthSystem.maxHealth = batSettings.MaxHealth;
+            healthSystem.shield = batSettings.Shield;
+            healthSystem.maxHealth = batSettings.MaxShield;
+            icon = batSettings.Icon;
+            color = batSettings.Color;
         }
 
         public override void EnemyUpdate()

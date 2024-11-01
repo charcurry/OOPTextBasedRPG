@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using static OOPTextBasedRPG.Settings;
 
 namespace OOPTextBasedRPG
 {
@@ -12,14 +12,17 @@ namespace OOPTextBasedRPG
         private readonly Player player;
         private readonly EnemyManager enemyManager;
         private readonly ItemManager itemManager;
+        private readonly Settings settings;
 
         public GameManager()
         {
-            map = new Map();
-            hud = new HUD(map);
-            player = new Player(map, spawnPoint);
-            enemyManager = new EnemyManager(map);
-            itemManager = new ItemManager(map);
+            settings = SettingsLoader.LoadSettings("settings.json");
+
+            map = new Map(settings.Map, settings.Player);
+            hud = new HUD(map, settings);
+            player = new Player(map, settings.Player.SpawnPoint, settings.Player);
+            enemyManager = new EnemyManager(map, settings.Enemies);
+            itemManager = new ItemManager(map, settings.Items);
         }
 
         public void Init()
@@ -69,8 +72,8 @@ namespace OOPTextBasedRPG
                 Draw();
             }
 
-            RenderTextScreen(player.healthSystem.isDead ? gameOverText : victoryText);
-            Console.WriteLine(continueText);
+            RenderTextScreen(player.healthSystem.isDead ? settings.HUD.GameOverText : settings.HUD.VictoryText);
+            Console.WriteLine(settings.HUD.ContinueText);
             Console.ReadKey(true);
         }
 

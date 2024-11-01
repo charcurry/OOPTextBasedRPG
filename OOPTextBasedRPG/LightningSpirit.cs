@@ -9,16 +9,16 @@ namespace OOPTextBasedRPG
 {
     internal class LightningSpirit : Enemy
     {
-        public LightningSpirit(Map map, Point2D position) : base(map, position)
+        public LightningSpirit(Map map, Point2D position, LightningSpiritSettings lightningSpiritSettings) : base(map, position)
         {
-            attackDamage = lightningSpiritDamage;
-            moveSpeed = lightningSpiritSpeed;
-            healthSystem.health = lightningSpiritHealth;
-            healthSystem.maxHealth = lightningSpiritMaxHealth;
-            healthSystem.shield = lightningSpiritShield;
-            healthSystem.maxHealth = lightningSpiritMaxShield;
-            icon = lightningSpiritIcon;
-            color = lightningSpiritColor;
+            attackDamage = lightningSpiritSettings.Damage;
+            moveSpeed = lightningSpiritSettings.Speed;
+            healthSystem.health = lightningSpiritSettings.Health;
+            healthSystem.maxHealth = lightningSpiritSettings.MaxHealth;
+            healthSystem.shield = lightningSpiritSettings.Shield;
+            healthSystem.maxHealth = lightningSpiritSettings.MaxShield;
+            icon = lightningSpiritSettings.Icon;
+            color = lightningSpiritSettings.Color;
         }
 
         public override void EnemyUpdate()
