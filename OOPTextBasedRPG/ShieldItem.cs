@@ -12,11 +12,11 @@ namespace OOPTextBasedRPG
     {
         public int healingValue;
 
-        public ShieldItem(Point2D position, Map map) : base (position, map)
+        public ShieldItem(Point2D position, Map map, ShieldItemSettings shieldItemSettings) : base (position, map)
         {
-            icon = shieldItemIcon;
-            color = shieldItemColor;
-            healingValue = shieldItemHealingValue;
+            icon = shieldItemSettings.Icon;
+            color = shieldItemSettings.Color;
+            healingValue = shieldItemSettings.HealingValue;
         }
 
         public override void PickupItem()

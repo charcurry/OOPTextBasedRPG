@@ -13,6 +13,8 @@ namespace OOPTextBasedRPG
 {
     internal class Map
     {
+        public MapSettings mapSettings;
+        public PlayerSettings playerSettings;
 
         #region Map File
         static string path = @"map.txt";
@@ -132,8 +134,10 @@ namespace OOPTextBasedRPG
         #endregion
 
         #region Constructor
-        public Map()
+        public Map(MapSettings mapSettings, PlayerSettings playerSettings)
         {
+            this.playerSettings = playerSettings;
+            this.mapSettings = mapSettings;
             Debug.WriteLine("Map Class Constructed");
         }
         #endregion
@@ -175,33 +179,33 @@ namespace OOPTextBasedRPG
         {
             if (tile == '#')
             {
-                Console.ForegroundColor = wallTileColor;
-                Console.Write(wallTile);
-                Console.ForegroundColor = defaultConsoleColor;
+                Console.ForegroundColor = mapSettings.WallTileColor;
+                Console.Write(mapSettings.WallTile);
+                Console.ForegroundColor = playerSettings.DefaultConsoleColor;
             }
             else if (tile == 'E')
             {
-                Console.ForegroundColor = doorTileColor;
-                Console.Write(doorTile);
-                Console.ForegroundColor = defaultConsoleColor;
+                Console.ForegroundColor = mapSettings.DoorTileColor;
+                Console.Write(mapSettings.DoorTile);
+                Console.ForegroundColor = playerSettings.DefaultConsoleColor;
             }
             else if (tile == ' ')
             {
-                Console.ForegroundColor = airTileColor;
-                Console.Write(airTile);
-                Console.ForegroundColor = defaultConsoleColor;
+                Console.ForegroundColor = mapSettings.AirTileColor;
+                Console.Write(mapSettings.AirTile);
+                Console.ForegroundColor = playerSettings.DefaultConsoleColor;
             }
             else if (tile == '~')
             {
-                Console.ForegroundColor = waterTileColor;
-                Console.Write(waterTile);
-                Console.ForegroundColor = defaultConsoleColor;
+                Console.ForegroundColor = mapSettings.WaterTileColor;
+                Console.Write(mapSettings.WaterTile);
+                Console.ForegroundColor = playerSettings.DefaultConsoleColor;
             }
-            else if (tile == 'O')
-            {
-                entities.Add(new Slime(this, new Point2D(x,y)));
-                Debug.Write("enemy made");
-            }
+            //else if (tile == 'O')
+            //{
+            //    entities.Add(new Slime(this, new Point2D(x,y)));
+            //    Debug.Write("enemy made");
+            //}
             else
             {
                 Console.Write(tile);
@@ -210,16 +214,16 @@ namespace OOPTextBasedRPG
 
         public char GetTile(Point2D coords)
         {
-            return mapRows[coords.y - borderOffset][coords.x - borderOffset];
+            return mapRows[coords.y - mapSettings.BorderOffset][coords.x - mapSettings.BorderOffset];
         }
 
         public void SetTile(Point2D position, char newTile)
         {
-            if (position.y >= borderOffset && position.y < mapYLength + borderOffset && position.x >= borderOffset && position.x < mapXLength + borderOffset)
+            if (position.y >= mapSettings.BorderOffset && position.y < mapYLength + mapSettings.BorderOffset && position.x >= mapSettings.BorderOffset && position.x < mapXLength + mapSettings.BorderOffset)
             {
-                var rowArray = mapRows[position.y - borderOffset].ToCharArray();
-                rowArray[position.x - borderOffset] = newTile;
-                mapRows[position.y - borderOffset] = new string(rowArray);
+                var rowArray = mapRows[position.y - mapSettings.BorderOffset].ToCharArray();
+                rowArray[position.x - mapSettings.BorderOffset] = newTile;
+                mapRows[position.y - mapSettings.BorderOffset] = new string(rowArray);
             }
 
         }

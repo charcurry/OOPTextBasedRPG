@@ -10,10 +10,10 @@ namespace OOPTextBasedRPG
     internal class KeyItem : Item
     {
 
-        public KeyItem(Point2D position, Map map) : base(position, map)
+        public KeyItem(Point2D position, Map map, KeyItemSettings keyItemSettings) : base(position, map)
         {
-            icon = keyItemIcon;
-            color = keyItemColor;
+            icon = keyItemSettings.Icon;
+            color = keyItemSettings.Color;
         }
 
         public override void PickupItem()

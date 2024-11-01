@@ -25,8 +25,10 @@ namespace OOPTextBasedRPG
         public int moveSpeed;
 
         public bool couldPickUp = true;
+        public Map map;
 
-        public int movesLeftToGetThroughWater = movesToGetThroughWater;
+
+        public int movesLeftToGetThroughWater;
         #endregion
 
         public void Move(Map map, Point2D startPos, Point2D endPos)
@@ -49,7 +51,7 @@ namespace OOPTextBasedRPG
                     for (int i = 0; i < deltaX; i++)
                     {
                         //checks for wall
-                        if (map.GetTile(new Point2D(x, y)) == wallTile)
+                        if (map.GetTile(new Point2D(x, y)) == map.mapSettings.WallTile)
                         {
                             return;
                         }
@@ -71,7 +73,7 @@ namespace OOPTextBasedRPG
                     for (int i = 0; i < deltaY; i++)
                     {
                         //checks for wall
-                        if (map.GetTile(new Point2D(x, y)) == wallTile)
+                        if (map.GetTile(new Point2D(x, y)) == map.mapSettings.WallTile)
                         {
                             return;
                         }
@@ -87,7 +89,7 @@ namespace OOPTextBasedRPG
                 }
             }
             //dealing with water tiles
-            if (map.GetTile(startPos) == waterTile && (this == map.GetPlayer() || this == (Slime)map.GetEnemy()))
+            if (map.GetTile(startPos) == map.mapSettings.WaterTile && (this == map.GetPlayer() || this == (Slime)map.GetEnemy()))
             {
                 if (movesLeftToGetThroughWater > 0)
                 {
@@ -96,25 +98,25 @@ namespace OOPTextBasedRPG
                 }
                 else
                 {
-                    movesLeftToGetThroughWater = movesToGetThroughWater;
+                    movesLeftToGetThroughWater = map.mapSettings.MovesToGetThroughWater;
                 }
             }
             //dealing with the edge of the world
-            if (endPos.y < 0 + borderOffset || endPos.x < 0 + borderOffset || endPos.y >= map.mapYLength + borderOffset || endPos.x >= map.mapXLength + borderOffset)
+            if (endPos.y < 0 + map.mapSettings.BorderOffset || endPos.x < 0 + map.mapSettings.BorderOffset || endPos.y >= map.mapYLength + map.mapSettings.BorderOffset || endPos.x >= map.mapXLength + map.mapSettings.BorderOffset)
             {
                 return;
             }
             //dealing with wall tiles
-            else if (map.GetTile(endPos) == wallTile)
+            else if (map.GetTile(endPos) == map.mapSettings.WallTile)
             {
                 return;
             }
             // dealing with doors
-            else if (this == map.GetPlayer() && map.GetTile(endPos) == doorTile)
+            else if (this == map.GetPlayer() && map.GetTile(endPos) == map.mapSettings.DoorTile)
             {
                 if (map.GetPlayer().numKeys > 0)
                 {
-                    map.SetTile(endPos, airTile);
+                    map.SetTile(endPos, map.mapSettings.AirTile);
                     map.GetPlayer().numKeys--;
                 }
             }
@@ -161,11 +163,13 @@ namespace OOPTextBasedRPG
         }
 
         #region Constructor
-        public Entity(Point2D position)
+        public Entity(Point2D position, Map map)
         {
+            this.map = map;
             Debug.WriteLine("Entity Class Constructed");
             healthSystem = new HealthSystem();
             this.position = new Point2D(position.x, position.y);
+            this.movesLeftToGetThroughWater = map.mapSettings.MovesToGetThroughWater;
         }
         #endregion
     }

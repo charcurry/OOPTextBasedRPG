@@ -8,8 +8,8 @@ namespace OOPTextBasedRPG
 {
     public struct Point2D
     {
-        public int x;
-        public int y;
+        public int x { get; set; }
+        public int y { get; set; }
 
         public Point2D(int x, int y)
         {

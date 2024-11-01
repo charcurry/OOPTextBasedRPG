@@ -11,11 +11,11 @@ namespace OOPTextBasedRPG
     {
         public int healingValue; 
 
-        public HealthItem(Point2D position, Map map) : base(position, map) 
+        public HealthItem(Point2D position, Map map, HealthItemSettings healthItemSettings) : base(position, map) 
         {
-            color = healthItemColor;
-            icon = healthItemIcon;
-            healingValue = healthItemHealingValue;
+            color = healthItemSettings.Color;
+            icon = healthItemSettings.Icon;
+            healingValue = healthItemSettings.HealingValue;
         }
 
         public override void PickupItem()

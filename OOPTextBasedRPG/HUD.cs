@@ -12,38 +12,39 @@ namespace OOPTextBasedRPG
         public Enemy lastEnemyAttacked;
         public Item lastItemPickedUp;
         public Enemy attacker;
+        public readonly Settings settings;
 
-        public int timerDuration = HUDTimerDuration;
+        public int timerDuration;
 
         private readonly Map map;
 
         #region HUD Methods
-        static void RenderLegend()
+        void RenderLegend()
         {
-            Console.ForegroundColor = playerColor;
+            Console.ForegroundColor = settings.Player.Color;
             Console.WriteLine("@ - Player");
-            Console.ForegroundColor = wallTileColor;
+            Console.ForegroundColor = settings.Map.WallTileColor;
             Console.WriteLine("# - Walls (Cannot move through)");
-            Console.ForegroundColor = lightningSpiritColor;
+            Console.ForegroundColor = settings.Enemies.LightningSpirit.Color;
             Console.WriteLine("Y - Lightning Spirits");
-            Console.ForegroundColor = defaultConsoleColor;
-            Console.ForegroundColor = batColor;
+            Console.ForegroundColor = settings.Player.DefaultConsoleColor;
+            Console.ForegroundColor = settings.Enemies.Bat.Color;
             Console.WriteLine("W - Bats");
-            Console.ForegroundColor = defaultConsoleColor;
-            Console.ForegroundColor = healthItemColor;
+            Console.ForegroundColor = settings.Player.DefaultConsoleColor;
+            Console.ForegroundColor = settings.Items.HealthItem.Color;
             Console.WriteLine("H - Health Pickups");
-            Console.ForegroundColor = defaultConsoleColor;
-            Console.ForegroundColor = shieldItemColor;
+            Console.ForegroundColor = settings.Player.DefaultConsoleColor;
+            Console.ForegroundColor = settings.Items.ShieldItem.Color;
             Console.WriteLine("S - Shield Pickups");
-            Console.ForegroundColor = defaultConsoleColor;
-            Console.ForegroundColor = slimeColor;
+            Console.ForegroundColor = settings.Player.DefaultConsoleColor;
+            Console.ForegroundColor = settings.Enemies.Slime.Color;
             Console.WriteLine("O - Slimes");
-            Console.ForegroundColor = defaultConsoleColor;
-            Console.ForegroundColor = keyItemColor;
+            Console.ForegroundColor = settings.Player.DefaultConsoleColor;
+            Console.ForegroundColor = settings.Items.KeyItem.Color;
             Console.WriteLine("F - Keys");
-            Console.ForegroundColor = doorTileColor;
+            Console.ForegroundColor = settings.Map.DoorTileColor;
             Console.WriteLine("E - Doors (Locked)");
-            Console.ForegroundColor = defaultConsoleColor;
+            Console.ForegroundColor = settings.Player.DefaultConsoleColor;
             Console.WriteLine();
         }
 
@@ -103,9 +104,11 @@ namespace OOPTextBasedRPG
             RenderHUD(player, enemies);
         }
 
-        public HUD(Map map)
+        public HUD(Map map, Settings settings)
         {
             this.map = map;
+            this.settings = settings;
+            this.timerDuration = settings.HUD.TimerDuration;
         }
 
         public Enemy GetAttacker(Enemy[] enemies)
