@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static OOPTextBasedRPG.Settings;
+using static OOPTextBasedRPG.GameSettings;
 
 namespace OOPTextBasedRPG
 {
@@ -12,7 +12,7 @@ namespace OOPTextBasedRPG
         public Enemy lastEnemyAttacked;
         public Item lastItemPickedUp;
         public Enemy attacker;
-        public readonly Settings settings;
+        public readonly GameSettings settings;
 
         public int timerDuration;
 
@@ -104,7 +104,7 @@ namespace OOPTextBasedRPG
             RenderHUD(player, enemies);
         }
 
-        public HUD(Map map, Settings settings)
+        public HUD(Map map, GameSettings settings)
         {
             this.map = map;
             this.settings = settings;

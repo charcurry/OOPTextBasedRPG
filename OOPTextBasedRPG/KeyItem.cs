@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static OOPTextBasedRPG.Settings;
+using static OOPTextBasedRPG.GameSettings;
 
 namespace OOPTextBasedRPG
 {

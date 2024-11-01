@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace OOPTextBasedRPG
 {
 
-    public class Settings
+    public class GameSettings
     {
         public PlayerSettings Player { get; set; }
         public EnemySettings Enemies { get; set; }

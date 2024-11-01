@@ -12,11 +12,12 @@ namespace OOPTextBasedRPG
         private readonly Player player;
         private readonly EnemyManager enemyManager;
         private readonly ItemManager itemManager;
-        private readonly Settings settings;
+        private readonly GameSettings settings;
+        private readonly string settingsFilePath = "game_settings.json";
 
         public GameManager()
         {
-            settings = SettingsLoader.LoadSettings("settings.json");
+            settings = SettingsLoader.LoadSettings(settingsFilePath);
 
             map = new Map(settings.Map, settings.Player);
             hud = new HUD(map, settings);

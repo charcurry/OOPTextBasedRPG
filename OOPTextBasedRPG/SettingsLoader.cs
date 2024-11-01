@@ -6,10 +6,10 @@ using System.Text.Json;
 
 public static class SettingsLoader
 {
-    public static Settings LoadSettings(string filePath)
+    public static GameSettings LoadSettings(string filePath)
     {
         string jsonString = File.ReadAllText(filePath);
-        Settings settings =  JsonSerializer.Deserialize<Settings>(jsonString);
+        GameSettings settings =  JsonSerializer.Deserialize<GameSettings>(jsonString);
 
         if (settings.Player != null)
         {

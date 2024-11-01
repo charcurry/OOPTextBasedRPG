@@ -7,7 +7,7 @@ using System.IO;
 using System.Diagnostics;
 using static System.Net.WebRequestMethods;
 using File = System.IO.File;
-using static OOPTextBasedRPG.Settings;
+using static OOPTextBasedRPG.GameSettings;
 
 namespace OOPTextBasedRPG
 {

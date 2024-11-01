@@ -75,7 +75,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyManager.cs" />
     <Compile Include="ItemManager.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="GameSettings.cs" />
     <Compile Include="SettingsLoader.cs" />
     <Compile Include="Slime.cs" />
     <Compile Include="Bat.cs" />
@@ -98,7 +98,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="settings.json">
+    <None Include="game_settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
